@@ -51,6 +51,8 @@ public class JConfig {
    public static final String mysql_url           = "jdbc:mysql://localhost:3306/jdbctest";
 
    public static final String mysql_db_name       = "jdbctest";
-
+   /**
+    * New section
+    */
    public void main(){ }
 }
