@@ -46,7 +46,6 @@ public class Jsock {
     
     public void initCore(){
 
-        
         //connection life time
         JConnections.LIFE_TIME = JConfig.connection_life_time;
         
@@ -71,7 +70,8 @@ public class Jsock {
         
         taskRouter.start();
         //garabge collector
-        JGarbageCollector gc = new JGarbageCollector(1000,new String[]{"jsock.core.JConnections"});
+
+        JGarbageCollector gc = new JGarbageCollector(JConfig.garbage_timeout,new String[]{"jsock.core.JConnections"});
         gc.start();
         //db instance 
         DBConnection.getInstance();
@@ -97,6 +97,7 @@ public class Jsock {
     }
     
 }
+
 /**
  * Shutdownhook
  * @author nn

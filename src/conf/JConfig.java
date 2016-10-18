@@ -40,10 +40,9 @@ public class JConfig {
   
    //socket buffer size
    public static final int  socket_buffer_size           = 1000;
-   //
+   //garbage timeout
    public static final int  garbage_timeout              = 10000;
 
-   
    /**
     * Database settings
     */
@@ -54,8 +53,7 @@ public class JConfig {
    public static final String mysql_url           = "jdbc:mysql://localhost:3306/jsock";
 
    public static final String mysql_db_name       = "jsock";
-   /**
-    * New section
-    */
+
+
    public void main(){ }
 }
