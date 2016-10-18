@@ -1,5 +1,5 @@
 /*
- * jsock framework https://github.com/Padaboo/jsock open source
+ * jsock framework https://github.com/nnpa/jsock open source
  * Each line should be prefixed with  * 
  */
 
@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  * @author padaboo I.B Aleksandrov jetananas@yandex.ru
  */
 public class DBConnection{
-    public static String dbName;
+    public static String     dbName;
     
     public static Connection connection;
     

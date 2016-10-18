@@ -1,5 +1,5 @@
 /*
- * jsock framework https://github.com/Padaboo/jsock open source
+ * jsock framework https://github.com/nnpa/jsock open source
  * 
  */
 package jsock;
@@ -7,6 +7,8 @@ package jsock;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import conf.JConfig;
+import jsock.core.JGarbageCollector;
+import jsock.core.JConnections;
 import jsock.db.DBConnection;
 import jsock.core.JTCPReciver;
 import jsock.core.JRouting;
@@ -19,29 +21,11 @@ import jsock.core.JUDPSender;
  * @author padaboo I.B Aleksandrov jetananas@yandex.ru
  */
 public class Jsock {
-    
-    //private String  rootPath;
-    
-    //private String 
-    //private net secyry;
-
-    //private Templates;
-
     //private User;
 
     //private Memory;
 
-    //private socketThreadQueue tcp/udp online;
-
-    //private Controllers;
-
-    //private Routing;
-
-    //private Dao/AR;
-
     //private Singnals;
-    
-    //private Options;
     
     /**
      * List of load modules
@@ -52,12 +36,20 @@ public class Jsock {
      * @param args the command line arguments
      */
     public static void main(String[] args){
+        //
+        ShutdownHook shutdownHook = new ShutdownHook();
+        Runtime.getRuntime().addShutdownHook(shutdownHook);
+        
         Jsock app = new Jsock();
         app.initCore();
     }
     
-
     public void initCore(){
+
+        
+        //connection life time
+        JConnections.LIFE_TIME = JConfig.connection_life_time;
+        
         if(JConfig.protocol.equals("tcp")){
             JTCPReciver reciver = new  JTCPReciver(JConfig.resiver_pool,JConfig.server_port);
             reciver.start();
@@ -78,8 +70,12 @@ public class Jsock {
         
         taskRouter.start();
         
+        JGarbageCollector gc = new JGarbageCollector(1000,new String[]{"jsock.core.JConnections"});
+        gc.start();
+        
         DBConnection.getInstance();
-
+        
+        initModules();
     }
     
     /**
@@ -91,7 +87,7 @@ public class Jsock {
             Object module;
             Class  moduleClass;
             for(String moduleName : JConfig.modules){
-                moduleClass = Class.forName( "jsock.modules." + moduleName );
+                moduleClass = Class.forName( "modules." + moduleName );
                 module      = moduleClass.newInstance();
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
@@ -99,4 +95,10 @@ public class Jsock {
         }
     }
     
+}
+
+class ShutdownHook extends Thread {
+    public void run() {
+        System.out.println("System halt");
+    }
 }

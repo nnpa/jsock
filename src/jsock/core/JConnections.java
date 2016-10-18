@@ -1,5 +1,5 @@
 /*
- * jsock framework https://github.com/Padaboo/jsock open source
+ * jsock framework https://github.com/nnpa/jsock open source
  * Each line should be prefixed with  * 
  */
 
@@ -8,7 +8,6 @@ package jsock.core;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
-import conf.JConfig;
 
 /**
  * List of user connections and connection object
@@ -16,10 +15,12 @@ import conf.JConfig;
  * @author padaboo I.B Aleksandrov jetananas@yandex.ru
  */
 public class JConnections {
+
+
     /**
      * ip connection
      */
-    public  String    ip;
+    public  String   ip;
     /**
      * port connection
      */
@@ -31,12 +32,13 @@ public class JConnections {
     /**
      * connection life time
      */
-    public static final int LIFE_TIME = JConfig.connection_life_time;
+    public static  int LIFE_TIME = 500;
+    
     /**
      *  Hash map (list) of actual connections
      */
     private static final Map<String, JConnections> map = new ConcurrentHashMap<>();
-
+    
     
     public JConnections(String ip){
         this.ip = ip;
@@ -68,12 +70,14 @@ public class JConnections {
      * by lifetime
      */
     public static synchronized void clear(){
+        
         for(Entry<String, JConnections> e : JConnections.map.entrySet()) {
             JConnections connection = (JConnections) e.getValue();
             if((connection.updateTime + JConnections.LIFE_TIME) > System.currentTimeMillis()){
                 JConnections.map.remove(e.getKey());
             }
         }
+        
     }
     
     /**

@@ -1,5 +1,5 @@
 /*
- * jsock framework https://github.com/Padaboo/jsock open source
+ * jsock framework https://github.com/nnpa/jsock open source
  * Each line should be prefixed with  * 
  */
 
@@ -49,7 +49,11 @@ public class JClientTCPTest {
             try {
                 InetAddress host = InetAddress.getLocalHost();
                 Socket socket    = null;
-                String message   = "{\"task\":\"JClientTask\",\"message\":1,\"user_id\":2}";
+                
+                //String message = "{\"task\":\"auth.JLoginTask\",\"email\":\"jetananas@yandex.ru\",\"password\":\"test\"}";
+                //8d68fcdbcfc38b7d78648ef8eb38b137
+                String message   = "{\"task\":\"JTestTask\",\"auth_token\":\"4b079b6926c2468ed7866fe3baf6f2a0\"}";
+                
                 for(int i=1; i<10;i++){
                     
                     socket = new Socket(host.getHostName(), 8084);
@@ -91,21 +95,27 @@ public class JClientTCPTest {
                     while(scanner.hasNextLine()){
                         data += scanner.nextLine();
                     }
+                    System.out.println(data);
+                    /*
                     parser = new JSONParser();
 
                     jsonObj          = new JSONObject((JSONObject) parser.parse(data));
                     
                     JSONArray errors = (JSONArray) jsonObj.get("errors");
-                            
+                    
+                    
                     Iterator<JSONObject> iterator = errors.iterator();
+                    
                     while (iterator.hasNext()) {
                         System.out.println(iterator.next());
                     }
-
+                    
                     data = "";
+                    **/
                 }
                 
-            } catch (IOException | ParseException ex) {
+            //} catch (IOException | ParseException ex) {
+            } catch (IOException ex) {
                 Logger.getLogger(JClientTCPTest.class.getName()).log(Level.SEVERE, null, ex);
             }
         }

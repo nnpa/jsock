@@ -1,41 +1,111 @@
 /*
- * jsock framework https://github.com/Padaboo/jsock open source
+ * jsock framework https://github.com/nnpa/jsock open source
  * Each line should be prefixed with  * 
  */
 
 package models;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import jsock.core.JConnections;
 import jsock.db.DBQuery;
 
 /**
- *
+ * 
  * @author padaboo I.B Aleksandrov jetananas@yandex.ru
  */
 public class Users extends DBQuery{
     
+    public String email;
+    
+    public String password;
+    
+    public String activation_key;
+
+    public String rights = "guest";
+    
+    public int  create_time;
+    
     public Users() {
-        setTableName("Users");
+        setTableName("users");
     }
     
-    /*
-    public void findById(String findId){
-        String sql    = "SELECT * FROM jdbctest.Users where id = " + findId;
+    public void byId(int findId){
         
-        ResultSet result   = execute(sql);
+        ResultSet result   = findById(findId);
         
         try {
             while (result.next()) {
-                name           = result.getNString("name");
-                id             = result.getInt("id");
-                session_key    = result.getNString("session_key");
-                email          = result.getNString("email");
-                password       = result.getNString("password");
-                activation_key = result.getNString("activation_key");
+                loadFields(result);
             }
         } catch (SQLException ex) {
             Logger.getLogger(Users.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    */
+    /**
+     * 
+     * @param email
+     * @param password
+     * @return token
+     */
+    public boolean authorization(String email,String password){
+        ResultSet result = find("email = '" + email + "' AND `password` = '" + password + "'");
+        
+        try {
+            if (result.next()){
+                
+                loadFields(result);
+                
+                return true;
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Users.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return false;
+    }
     
+    public void loadFields(ResultSet result){
+        try {
+            id              = result.getInt("id");
+            email           = result.getNString("email");
+            password        = result.getNString("password");
+            rights          = result.getNString("rights");
+            create_time     = result.getInt("create_time");
+        } catch (SQLException ex) {
+            Logger.getLogger(Users.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public  synchronized String getToken(){
+        String tokenString = email + " " + password;
+
+        String token = md5(tokenString) + (System.currentTimeMillis() / 1000L);
+        return token;
+    }
+    
+    public  synchronized String md5(String str){
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(str.getBytes());
+            
+            byte byteData[] = md.digest();
+            
+            //convert the byte to hex format method 1
+            StringBuffer sb = new StringBuffer();
+            for (int i = 0; i < byteData.length; i++) {
+                sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
+            }
+            
+            return  sb.toString();
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(JConnections.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 }

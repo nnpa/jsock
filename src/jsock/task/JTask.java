@@ -1,5 +1,5 @@
 /*
- * jsock framework https://github.com/Padaboo/jsock open source
+ * jsock framework https://github.com/nnpa/jsock open source
  * Each line should be prefixed with  * 
  */
 
@@ -28,7 +28,7 @@ public class JTask extends Thread{
         }
         
         public void action(){
-        
+            
         }
         
         public void beforeAction(){

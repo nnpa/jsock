@@ -1,5 +1,5 @@
 /*
- * jsock framework https://github.com/Padaboo/jsock open source
+ * jsock framework https://github.com/nnpa/jsock open source
  * Each line should be prefixed with  * 
  */
 
@@ -20,10 +20,12 @@ import conf.JConfig;
  * @author padaboo I.B Aleksandrov jetananas@yandex.ru
  */
 public class JClientUDPTest {
+    
+    public String token = "7ebc5d1781c51c50c864629299e6a5d91467830206";
+    
     public static void main(String[] args){
         JClientUDPTest test = new JClientUDPTest();
         test.init();
-        
     }
     
     public void init(){
@@ -34,17 +36,22 @@ public class JClientUDPTest {
         udpsend.start();
     }
     
-    class  UDPSendThread extends Thread{
+    class UDPSendThread extends Thread{
     
         @Override
         public void run() {
             try {
                 DatagramSocket datagramSocket = new DatagramSocket();
 
-                byte[] buffer = "{\"task\":\"JTestTask\",\"session_key\":0,\"user_id\":3}".getBytes();
+                //byte[] buffer = "{\"task\":\"auth.JLoginTask\",\"email\":\"jetananas@yandex.ru\",\"password\":\"test\"}".getBytes();
+                
+                //byte[] buffer = "{\"task\":\"JTestTask\",\"auth_token\":\"7ebc5d1781c51c50c864629299e6a5d91476670763\",\"message\":\"authorized\"}".getBytes();
+                
+                byte[] buffer = "{\"task\":\"JTestTask\",\"message\":\"mymessage\",}".getBytes();
 
+                
                 InetAddress receiverAddress = InetAddress.getLocalHost();
-
+                
                 DatagramPacket packet = new DatagramPacket(
                         buffer, buffer.length, receiverAddress, JConfig.server_port);
                 datagramSocket.send(packet);
@@ -71,7 +78,7 @@ public class JClientUDPTest {
                     serverSocket.receive ( receivePacket );
                     
                     byte[] data = new byte[receivePacket.getLength()];
-                                        
+                                   
                     data  = receivePacket.getData();
 
                     String stringData = new String(data,0, receivePacket.getLength());

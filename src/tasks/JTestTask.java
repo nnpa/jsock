@@ -1,5 +1,5 @@
 /*
- * jsock framework https://github.com/Padaboo/jsock open source
+ * jsock framework https://github.com/nnpa/jsock open source
  * Each line should be prefixed with  * 
  */
 
@@ -23,24 +23,49 @@ public class JTestTask extends JClientTask{
     @Override
     public String[][] rules(){
         String[][] rules = {
-             {"require","user_id,session_key"},
-             {"rights","guest"}
+             {"require","message"}
         };
         return rules;
     }
     
     @Override
     public void action(){
-        Users users = new Users();
-        //users.deleteById(2);
-        users.insert("(`name`,`auth_key`,`email`,`password`,`activation_key`)VALUES (\"Boris\",\"asdasd\",\"sgongaz@yandex.ru\",\"Aksjj24\",\"Jaksmek8\");");
-         //users.findById("2");
-        //System.out.println(users.email);
-        //users.update(" SET  `name` = \"test\""," where id = 3");
         
-        String outString = "{\"message\":\"test task complite\"}";
-        JOutMessages outMessage = new JOutMessages(this.message.ip,outString);
-        outMessage.insert();
+       //System.out.println(webUser.email);
+        //System.out.println("test");
+       //String token = this.message.json.get("auth_token").toString();
+       
+       String message   = this.message.json.get("message").toString();
+
+       String outString = "{\"message\":\""+message+"\"}";
+       
+       JOutMessages outMessage = new JOutMessages(this.message.ip,outString);
+       outMessage.insert();
+       
+       //System.out.println(message);
+       
+      //     System.out.println(this.connection.auth_token + " " + this.message.json.get("token").toString());
+      // }
+       
+       // System.out.println(this.connection.auth_token + " " + this.message.json.get("token").toString());
+
+       // String outString = "{\"message\":\""+this.connection.auth_token+"\"}";
+        
+        //System.out.println();
+        
+        //System.out.println("token " + this.connection.auth_token);
+        
+
+        
+        //System.out.println();
+    }
+    
+    @Override
+    public String rights() {
+        //String rigths = "user,admin";
+        String rigths = "guest";
+        
+        return rigths;
     }
     
 }

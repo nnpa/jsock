@@ -1,5 +1,5 @@
 /*
- * jsock framework https://github.com/Padaboo/jsock open source
+ * jsock framework https://github.com/nnpa/jsock open source
  * Each line should be prefixed with  * 
  */
 
@@ -12,11 +12,12 @@ package conf;
  */
 public class JConfig {
    //loadable modules 
-   public static String[] modules = { "JNet" };
+   public static String[] modules = { "TestModule" };
    
    /**
     * Core and net section
     * jsok.net section
+    * 
     */
    //size of sender pool net module
    public static final int  sender_pool                  = 300;
@@ -28,8 +29,7 @@ public class JConfig {
    //jnet_driver tcp udp    
    public static final String protocol                   = "udp";
 
-   //connection timeout
-   public static final int  connetion_time_out           = 500;
+
    //connection life time
    public static final int  connection_life_time         = 500;
 
@@ -40,6 +40,9 @@ public class JConfig {
   
    //socket buffer size
    public static final int  socket_buffer_size           = 1000;
+   //
+   public static final int  garbage_timeout              = 10000;
+
    
    /**
     * Database settings
@@ -48,9 +51,9 @@ public class JConfig {
    
    public static final String mysql_password      = "";
    
-   public static final String mysql_url           = "jdbc:mysql://localhost:3306/jdbctest";
+   public static final String mysql_url           = "jdbc:mysql://localhost:3306/jsock";
 
-   public static final String mysql_db_name       = "jdbctest";
+   public static final String mysql_db_name       = "jsock";
    /**
     * New section
     */
