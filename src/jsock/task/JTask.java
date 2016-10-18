@@ -12,6 +12,7 @@ import org.json.simple.JSONObject;
  * @author padaboo I.B Aleksandrov jetananas@yandex.ru
  */
 public class JTask extends Thread{
+       //error summary
         public JSONObject errors    = null;
         
         public JTask() {
@@ -26,15 +27,21 @@ public class JTask extends Thread{
                 afterAction();
             }
         }
-        
+        /**
+         * Main action
+         */
         public void action(){
             
         }
-        
+        /**
+         * Before action
+         */
         public void beforeAction(){
            
         }
-        
+        /**
+         * After Action
+         */
         public void afterAction(){
            
         }

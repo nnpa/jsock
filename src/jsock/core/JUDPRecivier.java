@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 import jsock.message.JInMessages;
 
 /**
- *
+ * 
  * @author padaboo I.B Aleksandrov jetananas@yandex.ru
  */
 public class JUDPRecivier extends Thread{

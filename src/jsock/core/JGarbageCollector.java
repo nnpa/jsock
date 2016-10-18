@@ -11,7 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * 
+ * Grabage memory
  * @author nn
  */
 public class JGarbageCollector extends Thread{

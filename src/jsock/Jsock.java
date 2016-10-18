@@ -50,6 +50,7 @@ public class Jsock {
         //connection life time
         JConnections.LIFE_TIME = JConfig.connection_life_time;
         
+        //tpc or udp protocol
         if(JConfig.protocol.equals("tcp")){
             JTCPReciver reciver = new  JTCPReciver(JConfig.resiver_pool,JConfig.server_port);
             reciver.start();
@@ -65,16 +66,16 @@ public class Jsock {
             JUDPSender sender     = new JUDPSender(JConfig.sender_pool,JConfig.client_port);
             sender.start();
         }
-        
+        //Routin
         JRouting taskRouter = new JRouting(JConfig.task_pool);
         
         taskRouter.start();
-        
+        //garabge collector
         JGarbageCollector gc = new JGarbageCollector(1000,new String[]{"jsock.core.JConnections"});
         gc.start();
-        
+        //db instance 
         DBConnection.getInstance();
-        
+        //init modules
         initModules();
     }
     
@@ -96,7 +97,10 @@ public class Jsock {
     }
     
 }
-
+/**
+ * Shutdownhook
+ * @author nn
+ */
 class ShutdownHook extends Thread {
     public void run() {
         System.out.println("System halt");

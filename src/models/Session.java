@@ -16,14 +16,26 @@ import jsock.db.DBQuery;
  * @author padaboo I.B Aleksandrov jetananas@yandex.ru
  */
 public class Session extends DBQuery{
+    /**
+     * User id
+     */
     public int    user_id;
+    /**
+     * Token
+     */
     public String token;
+    /**
+     * Create time
+     */
     public int    time;
             
     public Session() {
         setTableName("session");
     }
-    
+    /**
+     * Find row by token
+     * @param token 
+     */
     public void findByToken(String token){
         ResultSet result = find("token = '" + token + "'");
         
@@ -35,7 +47,10 @@ public class Session extends DBQuery{
             Logger.getLogger(Users.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+    /**
+     * Load fields
+     * @param result 
+     */
     public void loadFields(ResultSet result){
         try {
             user_id         = result.getInt("user_id");
@@ -45,7 +60,12 @@ public class Session extends DBQuery{
             Logger.getLogger(Users.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+    /**
+     * Set token
+     * @param userId
+     * @param token
+     * @param ip 
+     */
     public void setToken(int userId,String token,String ip){
         try {
             int time           = Long.valueOf(System.currentTimeMillis() / 1000L).intValue();

@@ -18,7 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * Recieve clien messages
  * @author padaboo I.B Aleksandrov jetananas@yandex.ru
  */
 public class JTCPReciver extends Thread{

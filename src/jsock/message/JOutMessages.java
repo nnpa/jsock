@@ -15,7 +15,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 /**
- *
+ * Outout messages
  * @author padaboo I.B Aleksandrov jetananas@yandex.ru
  */
 public class JOutMessages{

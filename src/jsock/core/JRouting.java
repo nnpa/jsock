@@ -13,7 +13,7 @@ import java.util.concurrent.Executors;
 
 
 /**
- *
+ * Routing tasks
  * @author padaboo I.B Aleksandrov jetananas@yandex.ru
  */
 public class JRouting extends Thread{

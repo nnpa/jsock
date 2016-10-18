@@ -27,7 +27,7 @@ public abstract class JClientTask extends JTask{
      */
     public JConnections connection;
     /**
-     * 
+     *  WebUser
      */
     public Users webUser;
 
@@ -42,20 +42,21 @@ public abstract class JClientTask extends JTask{
         this.connection = new JConnections(this.message.ip);
         this.connection = this.connection.get();
     }
-    
+    //Task action
     @Override
     public void action(){
         
-        //System.out.println("message " + message.json.toJSONString());
+        //
+        
     }
     /**
-     * 
+     * Client messag and other rules
      * @return String[][] rules
      */
     public abstract String[][] rules();
     
     /**
-     * 
+     * User permissions 
      * @return String[][] rights
      */
     public abstract String rights();
@@ -72,17 +73,21 @@ public abstract class JClientTask extends JTask{
             outMessage.insert();
         }
     }
-    
+    /**
+     * Before action
+     */
     @Override
     public void beforeAction(){
         validate();
-        
+        //check rights and load user
         if(!rights().equals("guest")){
             loadUser();
             checkRights();
         }
     }
-    
+    /**
+     * Load user class
+     */
     public void loadUser(){
         
         String token    = message.json.get("auth_token").toString();
@@ -95,7 +100,10 @@ public abstract class JClientTask extends JTask{
         
         webUser = user;
     }
-    
+    /**
+     * Check rights and permissions
+     * @return 
+     */
     public boolean checkRights(){
         String rights  = rights();
         String[] parts = rights.split(",");

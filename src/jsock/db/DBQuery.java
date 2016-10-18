@@ -11,23 +11,36 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * Database queries 
  * @author padaboo I.B Aleksandrov jetananas@yandex.ru
  */
 public class DBQuery {
+   /**
+    * Primary key
+    */
    public int id;
-    
+   /**
+    * Table name
+    */ 
    public String tableName = "";
-   
+   /**
+    * Result set
+    */
    public ResultSet rs = null;
-    
+   /**
+    * DBConnection 
+    */
    public DBConnection db;
-    
+
    public DBQuery(){
      db = DBConnection.getInstance();
 
    }
-   
+   /**
+    * 
+    * @param sql
+    * @return 
+    */
    public ResultSet execute(String sql){
        try {
            rs = db.statement.executeQuery(sql);
@@ -38,7 +51,10 @@ public class DBQuery {
        }
        return rs;
    }
-   
+   /**
+    * Delete row by id
+    * @param id 
+    */
    public void deleteById(int id){
        try {
            DBConnection.statement.executeUpdate("DELETE FROM `"+db.dbName+"`.`"+ tableName +"` where id = " + id);
@@ -46,32 +62,49 @@ public class DBQuery {
            Logger.getLogger(DBQuery.class.getName()).log(Level.SEVERE, null, ex);
        }
    }
-   
+   /**
+    * Delete row by id
+    * @return 
+    */
    public int delete(){
        deleteById(id);
        return id;
    }
-   
+   /**
+    * Set table name
+    * @param name 
+    */
    public void setTableName(String name){
        tableName = name;
    }
-   
+   /**
+    * Find element by id
+    * @param id
+    * @return 
+    */
    public ResultSet findById(int id){
 
         String sql    = "SELECT * FROM `"+db.dbName+"`.`"+ tableName +"` where id = " + id;
         
         return execute(sql);
    }
-   
+   /**
+    * Find element by id - whre condition
+    * Example find("id=1")
+    * @param condition
+    * @return 
+    */
    public ResultSet find(String condition){
         
         String sql    = "SELECT * FROM `"+db.dbName+"`.`"+ tableName +"` where " + condition;
         
-        //System.out.rpintln();
-        
         return execute(sql);
    }
-   
+   /**
+    * Insert statement 
+    * Example insert("(`id`) VALUES (1)")
+    * @param insert 
+    */
    public void insert(String insert){        
        try {
            String sql      = "INSERT INTO `"+db.dbName+"`.`"+ tableName +"` " + insert;    
@@ -80,7 +113,11 @@ public class DBQuery {
            Logger.getLogger(DBQuery.class.getName()).log(Level.SEVERE, null, ex);
        }
    }
-   
+   /**
+    * Update query
+    * @param set
+    * @param condition 
+    */
    public void update(String set,String condition){
        try {
            String escapeString = condition;
@@ -95,8 +132,12 @@ public class DBQuery {
            Logger.getLogger(DBQuery.class.getName()).log(Level.SEVERE, null, ex);
        }
    }
-   
-    public static String unescapeMySQLString(String s){
+   /**
+    * Escape mysql string
+    * @param s
+    * @return 
+    */
+   public static String unescapeMySQLString(String s){
           // note: the same buffer is used for both reading and writing
           // it works because the writer can never outrun the reader
           char chars[] = s.toCharArray();

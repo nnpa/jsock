@@ -15,17 +15,25 @@ import java.util.logging.Logger;
 import jsock.message.JOutMessages;
 
 /**
- *
+ * Send messages to client
  * @author padaboo I.B Aleksandrov jetananas@yandex.ru
  */
 public class JTCPSender extends Thread{
-    
+    /**
+     * Run flag
+     */
     public static boolean isRunning = true;
-    
+    /**
+     * Size of pool
+     */
     public int poolSize;
-    
+    /**
+     * message
+     */
     public JOutMessages message;
-    
+    /**
+     * client port
+     */
     public int clientPort;
     
     public JTCPSender(int poolSize,int clientPort){
