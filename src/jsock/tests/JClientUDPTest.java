@@ -43,11 +43,11 @@ public class JClientUDPTest {
             try {
                 DatagramSocket datagramSocket = new DatagramSocket();
 
-                //byte[] buffer = "{\"task\":\"auth.JLoginTask\",\"email\":\"jetananas@yandex.ru\",\"password\":\"test\"}".getBytes();
+                byte[] buffer = "{\"task\":\"LoginTask\",\"email\":\"jetananas@yandex.ru\",\"password\":\"test\"}".getBytes();
                 
                 //byte[] buffer = "{\"task\":\"JTestTask\",\"auth_token\":\"7ebc5d1781c51c50c864629299e6a5d91476670763\",\"message\":\"authorized\"}".getBytes();
                 
-                byte[] buffer = "{\"task\":\"JTestTask\",\"message\":\"mymessage\",}".getBytes();
+                //byte[] buffer = "{\"task\":\"JTestTask\",\"message\":\"mymessage\",}".getBytes();
 
                 
                 InetAddress receiverAddress = InetAddress.getLocalHost();

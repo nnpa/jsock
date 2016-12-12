@@ -1,2 +1,0 @@
-byte[] buffer = "{\"task\":\"JTestTask\",\"message\":\"mymessage\",}".getBytes();
-

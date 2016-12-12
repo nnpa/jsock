@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import jsock.db.DBConnection;
 import jsock.db.DBQuery;
 
 /**
@@ -28,7 +29,10 @@ public class Session extends DBQuery{
      * Create time
      */
     public int    time;
-            
+   
+    //300 second by default for framework test
+    public static int sessionLifeTime = 300;
+    
     public Session() {
         setTableName("session");
     }
@@ -70,11 +74,9 @@ public class Session extends DBQuery{
         try {
             int time           = Long.valueOf(System.currentTimeMillis() / 1000L).intValue();
 
-            //ResultSet rs3 = ddbexecuteQuery("SELECT COUNT(*) AS count FROM `session` ;");
             
             String countQuery = "SELECT COUNT(*) AS count FROM `"+db.dbName+"`.`"+ tableName +"` where user_id = '" + userId + "'";
             
-            //System.out.println(countQuery);
             
             ResultSet result = db.statement.executeQuery(countQuery);
             int count = 0;
@@ -84,14 +86,13 @@ public class Session extends DBQuery{
 
              }
 
-            //System.out.println(count);
-            
             if(count > 0){
-                String update = " set `user_id` = \"" + userId + "\", `token` = \"" + token + "\", `time` = \"" + time + "\", `ip` = \"" + ip +"\"";
+                String update = " set `user_id` = \"" + userId + "\", `token` = \"" + token + "\", `time` = UNIX_TIMESTAMP(now()), `ip` = \"" + ip +"\"";
 
                 update(update," where user_id = " + userId);
+                //UNIX_TIMESTAMP(now())
             } else {
-                String insertQuery = " (`user_id`,`token`,`time`,`ip`)VALUES (" + userId +",\""+ token +"\","+time+",\""+ ip +"\");";
+                String insertQuery = " (`user_id`,`token`,`time`,`ip`)VALUES (" + userId +",\""+ token +"\",UNIX_TIMESTAMP(now()),\""+ ip +"\");";
                 
                 insert(insertQuery);
             }
@@ -101,7 +102,17 @@ public class Session extends DBQuery{
         }
         
     }
+    /**
+     * Delete old session rows by session life time
+     * 
+     */
+    public void clearSession(){
+        try {
+            String query = "DELETE FROM `"+db.dbName+"`.`"+ tableName +"` where (`session`.`time` + " + sessionLifeTime +") < UNIX_TIMESTAMP(now());";
+            DBConnection.statement.executeUpdate(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(Session.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
-    
-
 }

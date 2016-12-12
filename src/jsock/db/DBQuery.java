@@ -122,7 +122,6 @@ public class DBQuery {
        try {
            String escapeString = condition;
            
-           
            String sql      = "UPDATE `"+db.dbName+"`.`"+ tableName +"` " + set + " " + escapeString;
            
            System.out.println(sql);

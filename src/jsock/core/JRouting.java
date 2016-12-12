@@ -48,7 +48,7 @@ public class JRouting extends Thread{
                 message     =  (JInMessages) JInMessages.get(key);
                 
                 Object task = loadTask(message);
-                //if task file exists
+                //if task exists
                 if(task != null)
                     executor.execute((Runnable) task);
                 

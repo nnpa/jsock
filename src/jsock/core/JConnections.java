@@ -10,12 +10,12 @@ import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
+ * 
  * List of user connections and connection object
  * user ip - key of hash map
  * @author padaboo I.B Aleksandrov jetananas@yandex.ru
  */
 public class JConnections {
-
 
     /**
      * ip connection
@@ -30,9 +30,9 @@ public class JConnections {
      */
     public  long updateTime;
     /**
-     * connection life time
+     * connection life time (java)
      */
-    public static  int LIFE_TIME = 500;
+    public static int LIFE_TIME = 60000;
     
     /**
      *  Hash map (list) of actual connections

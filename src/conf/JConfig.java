@@ -11,13 +11,14 @@ package conf;
  * @author padaboo I.B Aleksandrov jetananas@yandex.ru
  */
 public class JConfig {
-   //loadable modules 
+   
+   /**
+    * module section
+    */
    public static String[] modules = { "TestModule" };
    
    /**
-    * Core and net section
-    * jsok.net section
-    * 
+    * Net and socket section
     */
    //size of sender pool net module
    public static final int  sender_pool                  = 300;
@@ -30,19 +31,32 @@ public class JConfig {
    public static final String protocol                   = "udp";
 
 
-   //connection life time
+   //connection life time use in  JConnections LIFE_TIME
    public static final int  connection_life_time         = 500;
 
    //sender port
-   public static final int  client_port                  = 8088;
+   public static final int  client_port                  = 8092;
    //resiver port
-   public static final int  server_port                  = 8084;
+   public static final int  server_port                  = 8086;
   
    //socket buffer size
    public static final int  socket_buffer_size           = 1000;
-   //garbage timeout
-   public static final int  garbage_timeout              = 10000;
+   
+   /**
+    * Command executor section
+    */
+   //executor timeout 19 seconds by default
+   public static final int  executor_timeout             = 19000;
+   // tasks which must be executed, all tasks stored and
+   // must be created  in commands folder 
+   public static String[]   executor_tasks               = {"JSystemGarbage"};
+   
+   /** Session.sessionLifeTime
+    *  Session settings 
+    *  300 seconds for framework test
+    */
 
+   
    /**
     * Database settings
     */
@@ -54,6 +68,6 @@ public class JConfig {
 
    public static final String mysql_db_name       = "jsock";
 
-
+   
    public void main(){ }
 }

@@ -35,12 +35,12 @@ public class JTestTask extends JClientTask{
         //System.out.println("test");
        //String token = this.message.json.get("auth_token").toString();
        
-       String message   = this.message.json.get("message").toString();
+      // String message   = this.message.json.get("message").toString();
 
-       String outString = "{\"message\":\""+message+"\"}";
+      // String outString = "{\"message\":\""+message+"\"}";
        
-       JOutMessages outMessage = new JOutMessages(this.message.ip,outString);
-       outMessage.insert();
+      // JOutMessages outMessage = new JOutMessages(this.message.ip,outString);
+     //  outMessage.insert();
        
        //System.out.println(message);
        
@@ -67,5 +67,5 @@ public class JTestTask extends JClientTask{
         
         return rigths;
     }
-    
+
 }

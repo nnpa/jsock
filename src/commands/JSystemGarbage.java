@@ -3,69 +3,58 @@
  * Each line should be prefixed with  * 
  */
 
-package tasks;
+package commands;
 
-import jsock.message.JInMessages;
-import jsock.message.JOutMessages;
-import jsock.task.JClientTask;
-import models.Users;
+import jsock.core.JConnections;
+import models.Session;
 
 /**
- *
+ * Test user command
  * @author padaboo I.B Aleksandrov jetananas@yandex.ru
  */
-public class JTestTask extends JClientTask{
-
-    public JTestTask(JInMessages message) {
-        super(message);
+public class JSystemGarbage {
+    //restart time / run time out, run command every 20 second's
+    public static int timeout       = 20000;
+    //last time when command run (seconds
+    public static long lastRunTime  = 0;
+    //stop flag
+    public static boolean stopFlag  = false;
+    
+    
+    //any custom user parameters
+    public JSystemGarbage() {
+        
     }
     
-    @Override
-    public String[][] rules(){
-        String[][] rules = {
-             {"require","message"}
-        };
-        return rules;
+    public static void run(){
+       if(condition()){
+         //delete old sessions by life time
+         Session session = new Session();
+         session.clearSession();
+         //delete old connection
+         JConnections.clear();
+       }
+    }
+    /**
+     * run condition   
+     * run command every 20 seconds by example
+     * @return 
+     */
+    public static boolean condition(){
+        boolean flag = false;
+        //run every 20 seconds
+        long currentTime = System.currentTimeMillis();
+        
+        if((lastRunTime + timeout) < currentTime){
+            
+            lastRunTime = currentTime;
+            flag = true;
+        }
+        // u can add user condition here, for example:
+        // if(1=1){ flag = false;}
+        
+        return flag;
     }
     
-    @Override
-    public void action(){
-        
-       //System.out.println(webUser.email);
-        //System.out.println("test");
-       //String token = this.message.json.get("auth_token").toString();
-       
-       String message   = this.message.json.get("message").toString();
-
-       String outString = "{\"message\":\""+message+"\"}";
-       
-       JOutMessages outMessage = new JOutMessages(this.message.ip,outString);
-       outMessage.insert();
-       
-       //System.out.println(message);
-       
-      //     System.out.println(this.connection.auth_token + " " + this.message.json.get("token").toString());
-      // }
-       
-       // System.out.println(this.connection.auth_token + " " + this.message.json.get("token").toString());
-
-       // String outString = "{\"message\":\""+this.connection.auth_token+"\"}";
-        
-        //System.out.println();
-        
-        //System.out.println("token " + this.connection.auth_token);
-        
-
-        
-        //System.out.println();
-    }
-    
-    @Override
-    public String rights() {
-        //String rigths = "user,admin";
-        String rigths = "guest";
-        
-        return rigths;
-    }
-    
+    //public static get
 }

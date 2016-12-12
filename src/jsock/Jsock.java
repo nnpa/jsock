@@ -7,7 +7,7 @@ package jsock;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import conf.JConfig;
-import jsock.core.JGarbageCollector;
+import jsock.core.JCommandExecutor;
 import jsock.core.JConnections;
 import jsock.db.DBConnection;
 import jsock.core.JTCPReciver;
@@ -49,7 +49,7 @@ public class Jsock {
         //connection life time
         JConnections.LIFE_TIME = JConfig.connection_life_time;
         
-        //tpc or udp protocol
+        //create tcp pool
         if(JConfig.protocol.equals("tcp")){
             JTCPReciver reciver = new  JTCPReciver(JConfig.resiver_pool,JConfig.server_port);
             reciver.start();
@@ -58,6 +58,7 @@ public class Jsock {
             sender.start();
         }
         
+        //create udp poll
         if(JConfig.protocol.equals("udp")){
             JUDPRecivier recivier = new  JUDPRecivier(JConfig.resiver_pool,JConfig.server_port);
             recivier.start();
@@ -65,13 +66,14 @@ public class Jsock {
             JUDPSender sender     = new JUDPSender(JConfig.sender_pool,JConfig.client_port);
             sender.start();
         }
-        //Routin
+        //Routing user tasks
         JRouting taskRouter = new JRouting(JConfig.task_pool);
-        
         taskRouter.start();
-        //garabge collector
-
-        JGarbageCollector gc = new JGarbageCollector(JConfig.garbage_timeout,new String[]{"jsock.core.JConnections"});
+        
+        //
+        
+        //Execute system and user commands
+        JCommandExecutor gc = new JCommandExecutor(JConfig.executor_timeout,JConfig.executor_tasks);
         gc.start();
         //db instance 
         DBConnection.getInstance();
