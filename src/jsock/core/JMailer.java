@@ -14,14 +14,14 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 /**
- *
+ * http://www.java2s.com/Code/Jar/j/Downloadjavamail144jar.htm
  * @author nn
  */
 public class JMailer {
 
     
     /**
-     * 
+     * Send mail
      * @param to
      * @param subject
      * @param text
