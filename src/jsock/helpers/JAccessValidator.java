@@ -3,7 +3,7 @@
  * Each line should be prefixed with  * 
  */
 
-package jsock.validators;
+package jsock.helpers;
 
 /**
  *

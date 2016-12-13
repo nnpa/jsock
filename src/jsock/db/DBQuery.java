@@ -107,7 +107,8 @@ public class DBQuery {
     */
    public void insert(String insert){        
        try {
-           String sql      = "INSERT INTO `"+db.dbName+"`.`"+ tableName +"` " + insert;    
+           String sql      = "INSERT INTO `"+DBConnection.dbName+"`.`"+ tableName +"` " + insert;    
+           
            DBConnection.statement.executeUpdate(sql);
        } catch (SQLException ex) {
            Logger.getLogger(DBQuery.class.getName()).log(Level.SEVERE, null, ex);
@@ -131,6 +132,7 @@ public class DBQuery {
            Logger.getLogger(DBQuery.class.getName()).log(Level.SEVERE, null, ex);
        }
    }
+   
    /**
     * Escape mysql string
     * @param s
@@ -168,8 +170,6 @@ public class DBQuery {
                           case '0':   chars[j++] = '\0';   break;
                           case '\'':  chars[j++] = '\'';   break;
                           case '"':   chars[j++] = '"';    break;
-                          case 'b':   chars[j++] = '\b';   break;
-                          case 'n':   chars[j++] = '\n';   break;
                           case 'r':   chars[j++] = '\r';   break;
                           case 't':   chars[j++] = '\t';   break;
                           case 'z':   chars[j++] = '\032'; break;

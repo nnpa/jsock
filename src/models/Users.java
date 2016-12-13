@@ -12,13 +12,16 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import jsock.core.JConnections;
+import jsock.db.DBConnection;
 import jsock.db.DBQuery;
+import jsock.helpers.JRandomString;
 
 /**
  * 
  * @author padaboo I.B Aleksandrov jetananas@yandex.ru
  */
 public class Users extends DBQuery{
+    public static String salt = "a#4H5";
     
     public String email;
     
@@ -82,6 +85,29 @@ public class Users extends DBQuery{
         }
     }
     
+    public boolean exists(String email){
+        
+        try {
+            String countQuery = "SELECT COUNT(*) AS count FROM `"+DBConnection.dbName+"`.`"+ tableName +"` where email = '" + email + "'";
+            
+            
+            ResultSet result = DBConnection.statement.executeQuery(countQuery);
+            int count = 0;
+            
+            while (result.next()) {
+                count = result.getInt("count");
+                
+            }
+            
+            if(count > 0)
+               return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(Users.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+
+    }
+    
     public  synchronized String getToken(){
         String tokenString = email + " " + password;
 
@@ -108,4 +134,15 @@ public class Users extends DBQuery{
         }
         return null;
     }
+    
+    public String addUser(String email){
+        String password    = JRandomString.generateRandom(8);
+        String query = " (`email`,`password`,`rights`,`create_time`)VALUES ('"+email+"','"+ password +"','user',UNIX_TIMESTAMP(now()));";
+
+        insert(query);
+        
+        return password;
+    }
+    
+    
 }

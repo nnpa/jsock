@@ -28,7 +28,7 @@ public class JConfig {
    public static final int  task_pool                    = 300;
    
    //jnet_driver tcp udp    
-   public static final String protocol                   = "udp";
+   public  static final String protocol                  = "udp";
 
 
    //connection life time use in  JConnections LIFE_TIME
@@ -57,6 +57,26 @@ public class JConfig {
     */
 
    
+   /**
+    * Email section
+    * ibaleksandrov1988
+    * 
+    */
+    //from message
+    public static  final  String  email_from      = "ibaleksandrov@gmail.com";//change accordingly
+    //email user
+    public  static final  String  email_user_name = "ibaleksandrov";//change accordingly
+    //email password
+    public  static final  String  email_password  = "xxxxx";//change accordingly
+    //email auth
+    public  static final   String email_auth      = "true";
+    //email ttls
+    public  static final   String email_ttls      = "true";
+    //email host
+    public  static final   String email_host      = "smtp.gmail.com";
+    //
+    public  static final   String email_port      = "587";
+
    /**
     * Database settings
     */

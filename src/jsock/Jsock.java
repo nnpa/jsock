@@ -105,6 +105,7 @@ public class Jsock {
  * @author nn
  */
 class ShutdownHook extends Thread {
+    @Override
     public void run() {
         System.out.println("System halt");
     }

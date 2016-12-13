@@ -8,8 +8,10 @@ package models;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.mail.Authenticator;
 import jsock.db.DBConnection;
 import jsock.db.DBQuery;
 
@@ -17,6 +19,10 @@ import jsock.db.DBQuery;
  * @author padaboo I.B Aleksandrov jetananas@yandex.ru
  */
 public class Session extends DBQuery{
+
+    public static Session getInstance(Properties props, Authenticator authenticator) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     /**
      * User id
      */
