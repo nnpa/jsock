@@ -48,7 +48,7 @@ public class JRegistrationTask extends JClientTask{
         Users user = new Users();
         if(!user.exists(email) && JEmailValidator.isValidEmailAddress(email) ){
             String password = user.addUser(email);
-            JMailer.sendMail("jetananas@yandex.ru","registration","password: " + password);
+            JMailer.sendMail(email,"registration","password: " + password);
             outString = "{\"message\":\"User created, check mailbox\"}";
 
         }else{
