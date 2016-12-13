@@ -59,7 +59,6 @@ public class JConfig {
    
    /**
     * Email section
-    * ibaleksandrov1988
     * 
     */
     //from message

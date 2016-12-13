@@ -18,25 +18,7 @@ import javax.mail.internet.MimeMessage;
  * @author nn
  */
 public class JMailer {
-       /**
-    * Email section
-    * ibaleksandrov1988
-    * 
-    */
-    //from message
-    public   final  String  email_from      = "ibaleksandrov1988@gmail.com";
-    //email user
-    public   final  String  email_user_name = "ibaleksandrov1988";//change accordingly
-    //email password
-    public   final  String  email_password  = "g$xtkcb777G";//change accordingly
-    //email auth
-    public   final   String email_auth      = "true";
-    //email ttls
-    public   final   String email_ttls      = "true";
-    //email host
-    public   final   String email_host      = "smtp.gmail.com";
-    //
-    public   final   String email_port      = "587";
+
     
     /**
      * 
