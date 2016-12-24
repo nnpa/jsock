@@ -8,7 +8,7 @@ package jsock.task;
 import jsock.core.JConnections;
 import jsock.message.JInMessages;
 import jsock.message.JOutMessages;
-import jsock.helpers.JRequestValidator;
+import jsock.validators.JRequestValidator;
 import models.Session;
 import models.Users;
 import org.json.simple.JSONObject;

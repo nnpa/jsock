@@ -52,11 +52,11 @@ public class JClientTCPTest {
                 
                 //String message = "{\"task\":\"auth.JLoginTask\",\"email\":\"jetananas@yandex.ru\",\"password\":\"test\"}";
                 //8d68fcdbcfc38b7d78648ef8eb38b137
-                String message   = "{\"task\":\"JTestTask\",\"auth_token\":\"4b079b6926c2468ed7866fe3baf6f2a0\"}";
+                String message;
                 
                 for(int i=1; i<10;i++){
-                    
-                    socket = new Socket(host.getHostName(), 8084);
+                    message = "{\"task\":\"JTestTask\",\"message\":\"test"+i+"\"}";
+                    socket = new Socket(host.getHostName(), JConfig.server_port);
                     
                     //InputStream  inStream = socket.getInputStream();
                     PrintWriter socketOut;
@@ -65,6 +65,7 @@ public class JClientTCPTest {
                   
                     socketOut.println(message);
                     socket.close();
+                    System.out.println("Send: "+i);
                     Thread.sleep(100);
                     
                 }
@@ -81,17 +82,20 @@ public class JClientTCPTest {
         @Override
         public void run(){
             try {
+
                 ServerSocket serverSocket = new ServerSocket(JConfig.client_port);
                 
+
                 String data = "";
                 
                 while(true){
+                    data = "";
                     Socket   socket      = serverSocket.accept();
-                    
+
                     InputStream inStream = socket.getInputStream();
 
                     Scanner scanner      = new Scanner(inStream);
-
+                    
                     while(scanner.hasNextLine()){
                         data += scanner.nextLine();
                     }

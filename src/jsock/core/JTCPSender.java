@@ -15,25 +15,17 @@ import java.util.logging.Logger;
 import jsock.message.JOutMessages;
 
 /**
- * Send messages to client
+ *
  * @author padaboo I.B Aleksandrov jetananas@yandex.ru
  */
 public class JTCPSender extends Thread{
-    /**
-     * Run flag
-     */
+    
     public static boolean isRunning = true;
-    /**
-     * Size of pool
-     */
+    
     public int poolSize;
-    /**
-     * message
-     */
+    
     public JOutMessages message;
-    /**
-     * client port
-     */
+    
     public int clientPort;
     
     public JTCPSender(int poolSize,int clientPort){
@@ -54,6 +46,19 @@ public class JTCPSender extends Thread{
                     
                     //System.out.println(message.ip + "_" + message.json);
                     
+                    
+                    /**
+                    JConnections connection = new JConnections(message.ip);
+                    connection = connection.get();
+                    
+                    Socket socket;
+                    if(!connection.socketExists()){
+                         socket = new Socket(message.ip, clientPort);
+                         connection.setSocket(socket);
+                         connection.insert();
+                    }
+                    **/
+                    //connection.socket = 
                     Socket socket = new Socket(message.ip, clientPort);
                     
                     TCPSenderHandler senderHandler = new TCPSenderHandler(socket);
@@ -80,7 +85,10 @@ public class JTCPSender extends Thread{
         public void run() {
             try {
                 PrintWriter socketOut = new PrintWriter(socket.getOutputStream(), true);
+                
+                System.out.println(message.json.toJSONString());
                 socketOut.println(message.json.toJSONString());
+                message = null;
                 
             } catch (IOException ex) {
                 Logger.getLogger(JTCPSender.class.getName()).log(Level.SEVERE, null, ex);

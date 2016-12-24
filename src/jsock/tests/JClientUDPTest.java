@@ -49,7 +49,9 @@ public class JClientUDPTest {
                 
                 //byte[] buffer = "{\"task\":\"JTestTask\",\"message\":\"mymessage\",}".getBytes();
 
-                byte[] buffer = "{\"task\":\"JRegistrationTask\",\"email\":\"jetananas@yandex.ru\",}".getBytes();
+                //byte[] buffer = "{\"task\":\"JRegistrationTask\",\"email\":\"jetananas@yandex.ru\",}".getBytes();
+
+                byte[] buffer = "{\"task\":\"JTestTask\",\"message\":\"mymessage\",}".getBytes();
 
                 
                 InetAddress receiverAddress = InetAddress.getLocalHost();

@@ -32,32 +32,52 @@ public class JTCPReciver extends Thread{
      */
     private final int poolSize;
     /**
-     * 
+     * Daemon is running
      */
     public static boolean isRunning = true;
     
+    public ServerSocket serverSocket = null;
+    
+    /**
+     * 
+     * @param poolSize
+     * @param port 
+     */
     public JTCPReciver(int poolSize,int port){
         this.poolSize = poolSize;
         this.port     = port;
     }
+    
     
     /**
      * Create thread poll 
      */
     @Override
     public void run() {
-        try (ServerSocket serverSocket = new ServerSocket(port)) {
+        try {
+            //create server socket
+            this.serverSocket = new ServerSocket(port);
             ExecutorService executor   = Executors.newFixedThreadPool(poolSize);
-            
+
             while(JTCPReciver.isRunning){
+
                 Socket   socket  = serverSocket.accept();
+
                 executor.execute(
-                    new TCPReciverHandler(socket)
+                        new TCPReciverHandler(socket)
                 );
             }
+
+            try {
+                serverSocket.close();
+            } catch (IOException ex1) {
+                Logger.getLogger(JTCPReciver.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+
         } catch (IOException ex) {
             Logger.getLogger(JTCPReciver.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }
     
 
@@ -88,15 +108,19 @@ public class JTCPReciver extends Thread{
                 while(scanner.hasNextLine()){
                     data += scanner.nextLine();
                 }
-                
                 InetAddress socketAdress = socket.getInetAddress(); 
                 
                 String ip = socketAdress.getHostAddress();
                 
+                
                 //create connetion from socket and insert to table
                 JConnections socketInfo    = new JConnections(ip);
+                
+               // socketInfo.setSocket(socket);
+                
                 socketInfo.insert();
                 
+
                 //save input data to list
                 //key is ip + : + update time
                 //data is data id + : + data
@@ -108,11 +132,7 @@ public class JTCPReciver extends Thread{
             } catch (IOException ex) {
                 Logger.getLogger(TCPReciverHandler.class.getName()).log(Level.SEVERE, null, ex);
             } finally{
-                try {
-                    socket.close();
-                } catch (IOException ex) {
-                    Logger.getLogger(JTCPReciver.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                
             }
         }
     }

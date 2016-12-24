@@ -125,7 +125,7 @@ public class DBQuery {
            
            String sql      = "UPDATE `"+db.dbName+"`.`"+ tableName +"` " + set + " " + escapeString;
            
-           System.out.println(sql);
+           //System.out.println(sql);
            
            DBConnection.statement.executeUpdate(sql);
        } catch (SQLException ex) {

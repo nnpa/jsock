@@ -29,18 +29,30 @@ public class JTestTask extends JClientTask{
     }
     
     @Override
+    public String rights() {
+        //String rigths = "user,admin";
+        String rigths = "guest";
+        
+        return rigths;
+    }
+
+    
+    @Override
     public void action(){
         
        //System.out.println(webUser.email);
         //System.out.println("test");
        //String token = this.message.json.get("auth_token").toString();
        
-      // String message   = this.message.json.get("message").toString();
+       String message   = this.message.json.get("message").toString();
 
-      // String outString = "{\"message\":\""+message+"\"}";
+       System.out.println(message);
        
-      // JOutMessages outMessage = new JOutMessages(this.message.ip,outString);
-     //  outMessage.insert();
+       String outString = "{\"message\":\"Test\"}";
+       
+       
+       JOutMessages outMessage = new JOutMessages(this.message.ip,outString);
+       outMessage.insert();
        
        //System.out.println(message);
        
@@ -60,12 +72,5 @@ public class JTestTask extends JClientTask{
         //System.out.println();
     }
     
-    @Override
-    public String rights() {
-        //String rigths = "user,admin";
-        String rigths = "guest";
-        
-        return rigths;
-    }
 
 }

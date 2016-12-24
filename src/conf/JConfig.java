@@ -28,12 +28,17 @@ public class JConfig {
    public static final int  task_pool                    = 300;
    
    //jnet_driver tcp udp    
-   public  static final String protocol                  = "udp";
+   public  static final String protocol                  = "tcp";
 
 
-   //connection life time use in  JConnections LIFE_TIME
-   public static final int  connection_life_time         = 500;
+   /**
+    * Connection life time use in  JConnections LIFE_TIME
+    * Time after which the server close connection
+    * 
+    * */
+   public static final int  connection_life_time         = 60000;
 
+   
    //sender port
    public static final int  client_port                  = 8092;
    //resiver port
@@ -41,6 +46,12 @@ public class JConfig {
   
    //socket buffer size
    public static final int  socket_buffer_size           = 1000;
+   
+   /**
+    * if keep_alive false server close connection before send message
+    * if keep_alive true  server keep socket connection
+    */
+   public static final boolean keep_alive                    = true;
    
    /**
     * Command executor section

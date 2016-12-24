@@ -94,12 +94,7 @@ public class JUDPRecivier extends Thread{
             data  = receivePacket.getData();
             
             String stringData = new String(data,0, receivePacket.getLength());
-            
-            //System.out.println(stringData);
-            
-            JConnections socketInfo   = new JConnections(ip);
-            socketInfo.insert();
-            
+                        
             JInMessages inputSocketMessage = new JInMessages(ip,stringData);
             inputSocketMessage.insert();
         }

@@ -47,7 +47,7 @@ public class Jsock {
     public void initCore(){
 
         //connection life time
-        JConnections.LIFE_TIME = JConfig.connection_life_time;
+        JConnections.life_time = JConfig.connection_life_time;
         
         //create tcp pool
         if(JConfig.protocol.equals("tcp")){

@@ -6,7 +6,7 @@ package tasks;
 
 
 import jsock.core.JMailer;
-import jsock.helpers.JEmailValidator;
+import jsock.validators.JEmailValidator;
 import jsock.message.JInMessages;
 import jsock.message.JOutMessages;
 import jsock.task.JClientTask;
@@ -43,7 +43,7 @@ public class JRegistrationTask extends JClientTask{
     public void action(){
         String outString = "";
         
-        String email    = this.message.json.get("email").toString();
+        String email     = this.message.json.get("email").toString();
         
         Users user = new Users();
         if(!user.exists(email) && JEmailValidator.isValidEmailAddress(email) ){

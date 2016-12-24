@@ -26,10 +26,10 @@ import org.json.simple.parser.ParseException;
  *
  * @author padaboo I.B Aleksandrov jetananas@yandex.ru
  */
-public class JClientTCPTest {
+public class JClientTCPSession {
     
     public static void main(String[] args) throws UnknownHostException, IOException, ClassNotFoundException, InterruptedException{
-       JClientTCPTest tcpTest = new JClientTCPTest();
+       JClientTCPSession tcpTest = new JClientTCPSession();
        tcpTest.test();
         
        
@@ -52,11 +52,9 @@ public class JClientTCPTest {
                 
                 //String message = "{\"task\":\"auth.JLoginTask\",\"email\":\"jetananas@yandex.ru\",\"password\":\"test\"}";
                 //8d68fcdbcfc38b7d78648ef8eb38b137
-                String message   = "{\"task\":\"JTestTask\",\"auth_token\":\"4b079b6926c2468ed7866fe3baf6f2a0\"}";
-                
-                for(int i=1; i<10;i++){
-                    
-                    socket = new Socket(host.getHostName(), 8084);
+
+                    String message = "{\"task\":\"JLoginTask\",\"email\":\"jetananas@yandex.ru\",\"password\":\"P2lfNOeI\"}";
+                    socket = new Socket(host.getHostName(), JConfig.server_port);
                     
                     //InputStream  inStream = socket.getInputStream();
                     PrintWriter socketOut;
@@ -67,9 +65,8 @@ public class JClientTCPTest {
                     socket.close();
                     Thread.sleep(100);
                     
-                }
             } catch ( IOException | InterruptedException ex) {
-                Logger.getLogger(JClientTCPTest.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(JClientTCPSession.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -81,42 +78,30 @@ public class JClientTCPTest {
         @Override
         public void run(){
             try {
+
                 ServerSocket serverSocket = new ServerSocket(JConfig.client_port);
                 
+
                 String data = "";
                 
                 while(true){
+                    data = "";
                     Socket   socket      = serverSocket.accept();
-                    
+
                     InputStream inStream = socket.getInputStream();
 
                     Scanner scanner      = new Scanner(inStream);
-
+                    
                     while(scanner.hasNextLine()){
                         data += scanner.nextLine();
                     }
                     System.out.println(data);
-                    /*
-                    parser = new JSONParser();
 
-                    jsonObj          = new JSONObject((JSONObject) parser.parse(data));
-                    
-                    JSONArray errors = (JSONArray) jsonObj.get("errors");
-                    
-                    
-                    Iterator<JSONObject> iterator = errors.iterator();
-                    
-                    while (iterator.hasNext()) {
-                        System.out.println(iterator.next());
-                    }
-                    
-                    data = "";
-                    **/
                 }
                 
             //} catch (IOException | ParseException ex) {
             } catch (IOException ex) {
-                Logger.getLogger(JClientTCPTest.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(JClientTCPSession.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

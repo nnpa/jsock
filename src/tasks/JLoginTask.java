@@ -43,6 +43,7 @@ public class JLoginTask extends JClientTask{
         
         String password = this.message.json.get("password").toString();
         
+        
         Users users     = new Users();
         
         boolean isAuth  = users.authorization(email,password);
@@ -54,7 +55,7 @@ public class JLoginTask extends JClientTask{
              String token       = users.getToken();
              int   userId       = users.id;
              
-             String ip          = this.connection.ip;
+             String ip          = this.message.ip;
              
              //System.out.println(insertQuery);
              
@@ -62,43 +63,17 @@ public class JLoginTask extends JClientTask{
              
              session.setToken(userId, token,ip);
              
-             //this.connection.setUserId(users.id);
              
              outString = "{\"token\":\"" + token +"\"}";
              
-             //outString          = "{\"token\":\"" + this.connection.auth_token +"\"}";
-             
-             //this.connection
         }else{
              outString = "{\"error\":\"Incorrect login or password \"}";
         }
         
+        
         JOutMessages outMessage = new JOutMessages(this.message.ip,outString);
         outMessage.insert();
-        
-        //System.out.println(this.message.json.get("email"));
-        
-        //System.out.println(this.message.json.get("password"));
-        
-        
-        //email = 'jetananas@yandex.ru' and `password` = 'adsasda';
 
-        //if(){
-       //     
-       // }
-        /**
-        Users users = new Users();
-        //users.deleteById(2);
-        users.insert("(`name`,`email`,`password`,`activation_key`,`rights`)VALUES (\"Boris\",\"sgongaz@yandex.ru\",\"Aksjj24\",\"Jaksmek8\",\"user\");");
-         //users.findById("2");
-        //System.out.println(users.email);
-        //users.update(" SET  `name` = \"test\""," where id = 3");
-        //System.out.println(this.message.json.toString());
-        
-        String outString = "{\"message\":\"test task complite\"}";
-        JOutMessages outMessage = new JOutMessages(this.message.ip,outString);
-        outMessage.insert();
-        * */
     }
     
 }

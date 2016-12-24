@@ -35,7 +35,13 @@ public class Session extends DBQuery{
      * Create time
      */
     public int    time;
-   
+    
+     /**
+     * User ip
+     */
+    public String  ip;
+    
+    
     //300 second by default for framework test
     public static int sessionLifeTime = 300;
     
@@ -66,6 +72,7 @@ public class Session extends DBQuery{
             user_id         = result.getInt("user_id");
             token           = result.getNString("token");
             time            = result.getInt("time");
+            ip              = result.getNString("ip");
         } catch (SQLException ex) {
             Logger.getLogger(Users.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -89,7 +96,7 @@ public class Session extends DBQuery{
             
              while (result.next()) {
                 count = result.getInt("count");
-
+                
              }
 
             if(count > 0){
@@ -108,6 +115,19 @@ public class Session extends DBQuery{
         }
         
     }
+    
+    public void findByUserID(int id){
+        ResultSet result = find("user_id = '" + id + "'");
+        
+         try {
+            while (result.next()) {
+                loadFields(result);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Users.class.getName()).log(Level.SEVERE, null, ex);
+        }
+   }
+    
     /**
      * Delete old session rows by session life time
      * 

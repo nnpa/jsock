@@ -3,7 +3,7 @@
  * Each line should be prefixed with  * 
  */
 
-package jsock.helpers;
+package jsock.validators;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;

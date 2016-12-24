@@ -5,6 +5,8 @@
 
 package jsock.core;
 
+import java.net.DatagramSocket;
+import java.net.Socket;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
@@ -30,20 +32,39 @@ public class JConnections {
      */
     public  long updateTime;
     /**
-     * connection life time (java)
+     * connection life time (java) 60 seconds
      */
-    public static int LIFE_TIME = 60000;
+    public static int life_time =  60000;
+    /**
+     * User socket tcp using
+     */
+    public Socket socket             = null;   
+    /**
+     * User socket udp using
+     */
+    public DatagramSocket datagramSocket    = null;
+
+    /**
+     * keep_alive flag.
+     * if true server save user socket connections inside and may write all time
+     * after connect
+     *
+     * if false server open and close connection every messaging
+     */
+
     
     /**
      *  Hash map (list) of actual connections
      */
     private static final Map<String, JConnections> map = new ConcurrentHashMap<>();
-    
-    
+        
     public JConnections(String ip){
+        
+        
         this.ip = ip;
         //this.ip         = socket.getInetAddress().toString();
         this.updateTime = System.currentTimeMillis();
+        
     }
     
     /**
@@ -53,9 +74,10 @@ public class JConnections {
     public synchronized JConnections get(){
         if(JConnections.map.containsKey(this.ip))
             return JConnections.map.get(this.ip);
-        
+    
         return null;
     }
+
     
     /**
      * Remove connection o by key 
@@ -73,7 +95,7 @@ public class JConnections {
         
         for(Entry<String, JConnections> e : JConnections.map.entrySet()) {
             JConnections connection = (JConnections) e.getValue();
-            if((connection.updateTime + JConnections.LIFE_TIME) > System.currentTimeMillis()){
+            if((connection.updateTime + JConnections.life_time) > System.currentTimeMillis()){
                 JConnections.map.remove(e.getKey());
             }
         }
@@ -89,4 +111,5 @@ public class JConnections {
         
         JConnections.map.put(this.ip, this);
     }
+
 }

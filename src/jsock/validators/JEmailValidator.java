@@ -2,7 +2,7 @@
  * jsock framework https://github.com/nnpa/jsock open source
  * Each line should be prefixed with  * 
  */
-package jsock.helpers;
+package jsock.validators;
 
 /**
  *

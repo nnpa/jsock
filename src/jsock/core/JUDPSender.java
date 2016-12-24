@@ -49,11 +49,11 @@ public class JUDPSender extends Thread{
                     message     =  (JOutMessages) JOutMessages.get(key);
 
                     buffer      = message.json.toJSONString().getBytes();
-
+                    
                     inetAddress = InetAddress.getByName(message.ip);
-
+                    
                     packet = new DatagramPacket(buffer, buffer.length, inetAddress, this.clientPort);
-
+                    
                     handler = new JUDPSenderHandler(socket,packet);
                     executor.execute(handler);
 
@@ -79,16 +79,6 @@ public class JUDPSender extends Thread{
         @Override
         public void run() {
             try {
-                
-                /**
-                byte[] data = new byte[packet.getLength()];
-            
-                data  = packet.getData();
-            
-                String stringData = new String(data,0, packet.getLength());
-            
-                System.out.println(stringData);
-                **/
                 
                 socket.send(packet);
             } catch (IOException ex) {
