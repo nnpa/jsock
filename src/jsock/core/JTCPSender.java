@@ -44,21 +44,7 @@ public class JTCPSender extends Thread{
                 try {
                     message     =  (JOutMessages) JOutMessages.get(key);
                     
-                    //System.out.println(message.ip + "_" + message.json);
-                    
-                    
-                    /**
-                    JConnections connection = new JConnections(message.ip);
-                    connection = connection.get();
-                    
-                    Socket socket;
-                    if(!connection.socketExists()){
-                         socket = new Socket(message.ip, clientPort);
-                         connection.setSocket(socket);
-                         connection.insert();
-                    }
-                    **/
-                    //connection.socket = 
+
                     Socket socket = new Socket(message.ip, clientPort);
                     
                     TCPSenderHandler senderHandler = new TCPSenderHandler(socket);

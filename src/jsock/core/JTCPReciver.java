@@ -115,9 +115,7 @@ public class JTCPReciver extends Thread{
                 
                 //create connetion from socket and insert to table
                 JConnections socketInfo    = new JConnections(ip);
-                
-               // socketInfo.setSocket(socket);
-                
+                                
                 socketInfo.insert();
                 
 

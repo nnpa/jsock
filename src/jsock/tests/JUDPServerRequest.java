@@ -122,6 +122,10 @@ public class JUDPServerRequest {
                         System.out.println(json.get("ip_message").toString());
                     }
                     
+                    if(null != json.get("error")){
+                        System.out.println(json.get("error").toString());
+                    }
+                    
                 }
             } catch (SocketException ex) {
                 Logger.getLogger(JClientUDPTest.class.getName()).log(Level.SEVERE, null, ex);

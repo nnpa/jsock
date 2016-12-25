@@ -35,24 +35,7 @@ public class JConnections {
      * connection life time (java) 60 seconds
      */
     public static int life_time =  60000;
-    /**
-     * User socket tcp using
-     */
-    public Socket socket             = null;   
-    /**
-     * User socket udp using
-     */
-    public DatagramSocket datagramSocket    = null;
 
-    /**
-     * keep_alive flag.
-     * if true server save user socket connections inside and may write all time
-     * after connect
-     *
-     * if false server open and close connection every messaging
-     */
-
-    
     /**
      *  Hash map (list) of actual connections
      */

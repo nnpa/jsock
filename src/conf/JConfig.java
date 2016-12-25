@@ -28,7 +28,7 @@ public class JConfig {
    public static final int  task_pool                    = 300;
    
    //jnet_driver tcp udp    
-   public  static final String protocol                  = "tcp";
+   public  static final String protocol                  = "udp";
 
 
    /**
@@ -46,12 +46,6 @@ public class JConfig {
   
    //socket buffer size
    public static final int  socket_buffer_size           = 1000;
-   
-   /**
-    * if keep_alive false server close connection before send message
-    * if keep_alive true  server keep socket connection
-    */
-   public static final boolean keep_alive                    = true;
    
    /**
     * Command executor section

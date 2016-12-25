@@ -44,25 +44,18 @@ public class JRightsTask extends JClientTask{
          * get ip from session and send to open socket
         
         **/
-        
+        System.out.println("user_id: " + webUser.id + " email: " + webUser.email + " rights: "+ webUser.rights); 
         
         Session session = new Session();
         session.findByUserID(12);
         
         String ip = session.ip;
         
-        System.out.println("ip " + ip);
         
-        String outString = "{\"ip_message\":\"send by id\"}";
+        String outString = "{\"ip_message\":\"send to user by session id\"}";
         
         JOutMessages outMessage = new JOutMessages(ip,outString);
         outMessage.insert();
-        
-        
-        //System.out.println("asdasd");
-        //or you can search online users in JConnections by ip
-        //or you can searcg authorized users in Session model 
-        
         
     }
 }
