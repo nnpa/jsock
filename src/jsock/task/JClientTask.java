@@ -23,7 +23,7 @@ public abstract class JClientTask extends JTask{
      */
     public final JInMessages message;
     /**
-     * Task call errors 
+     * Connections
      */
     public JConnections connection;
     /**

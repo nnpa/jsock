@@ -12,12 +12,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * Class with help method's
  * @author nn
  */
 public class JHelpers {
     private static final String characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-
+    /**
+     * Generate random string
+     * @param in length
+     * @return String random string
+     */
     public static String generateRandom(int length) {
         Random random = new SecureRandom();
         if (length <= 0) {
@@ -31,7 +35,11 @@ public class JHelpers {
 
         return sb.toString();
     }
-    
+    /**
+     * MD5 hash
+     * @param str
+     * @return String
+     */
     public static  String md5(String str){
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");

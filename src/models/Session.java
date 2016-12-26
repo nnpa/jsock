@@ -50,7 +50,7 @@ public class Session extends DBQuery{
     }
     /**
      * Find row by token
-     * @param token 
+     * @param String token 
      */
     public void findByToken(String token){
         ResultSet result = find("token = '" + token + "'");
@@ -64,8 +64,8 @@ public class Session extends DBQuery{
         }
     }
     /**
-     * Load fields
-     * @param result 
+     * Load fields to model
+     * @param ResultSet result 
      */
     public void loadFields(ResultSet result){
         try {
@@ -79,9 +79,9 @@ public class Session extends DBQuery{
     }
     /**
      * Set token
-     * @param userId
-     * @param token
-     * @param ip 
+     * @param int userId
+     * @param String token
+     * @param String ip 
      */
     public void setToken(int userId,String token,String ip){
         try {
@@ -115,7 +115,10 @@ public class Session extends DBQuery{
         }
         
     }
-    
+    /**
+     * Find user by id
+     * @param int id 
+     */
     public void findByUserID(int id){
         ResultSet result = find("user_id = '" + id + "'");
         

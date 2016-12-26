@@ -39,9 +39,9 @@ public class JTCPReciver extends Thread{
     public ServerSocket serverSocket = null;
     
     /**
-     * 
-     * @param poolSize
-     * @param port 
+     * Constructor
+     * @param int poolSize
+     * @param int port 
      */
     public JTCPReciver(int poolSize,int port){
         this.poolSize = poolSize;

@@ -7,27 +7,40 @@ package conf;
 
 
 /**
- *  
+ * JCongif stored framework settings
  * @author padaboo I.B Aleksandrov jetananas@yandex.ru
  */
 public class JConfig {
    
    /**
     * module section
+    * All modules must be created at modules directory and add
+    * to modules array
     */
    public static String[] modules = { "TestModule" };
    
    /**
     * Net and socket section
     */
-   //size of sender pool net module
+   
+   /**
+    * size of thread pool which send messages to clients
+    * */
    public static final int  sender_pool                  = 300;
-   //size of resiver pool  net module
-   public static final int  resiver_pool                 = 300;
-   //size of resiver pool  net module  
+   /**
+    * size of thread pool which receive messages from clients
+    */
+   public static final int  receive_pool                 = 300;
+   /**
+    * Size of thread pool which execute tasks
+    */
    public static final int  task_pool                    = 300;
    
-   //jnet_driver tcp udp    
+   //jnet_driver tcp udp 
+
+   /**
+    * Switch socket type tcp or udp
+    */
    public  static final String protocol                  = "udp";
 
 
@@ -39,22 +52,32 @@ public class JConfig {
    public static final int  connection_life_time         = 60000;
 
    
-   //sender port
+   /**
+    * Client port
+    */
    public static final int  client_port                  = 8092;
-   //resiver port
+   /**
+    * Server port
+    */
    public static final int  server_port                  = 8086;
   
-   //socket buffer size
+   /**
+    * Socket buffer size
+    */
    public static final int  socket_buffer_size           = 1000;
    
    /**
     * Command executor section
     */
-   //executor timeout 19 seconds by default
+   
+   /**
+    * Timeout of command executor
+    */
    public static final int  executor_timeout             = 19000;
-   // tasks which must be executed, all tasks stored and
-   // must be created  in commands folder 
-   public static String[]   executor_tasks               = {"JSystemGarbage"};
+   /**
+    * Add command to command array
+    */
+   public static String[]   executor_commands               = {"JSystemGarbage"};
    
    /** Session.sessionLifeTime
     *  Session settings 
@@ -84,12 +107,23 @@ public class JConfig {
    /**
     * Database settings
     */
+    
+   /**
+    * mysql user name
+    */
    public static final String mysql_user          = "root";
-   
+   /**
+    * mysql user password
+    */
    public static final String mysql_password      = "";
    
+   /**
+    * jdbc mysql connection string
+    */
    public static final String mysql_url           = "jdbc:mysql://localhost:3306/jsock";
-
+   /**
+    * mysql db name
+    */
    public static final String mysql_db_name       = "jsock";
 
    

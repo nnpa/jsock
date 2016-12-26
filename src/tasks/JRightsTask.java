@@ -50,7 +50,8 @@ public class JRightsTask extends JClientTask{
         session.findByUserID(12);
         
         String ip = session.ip;
-        
+        //all users
+        //session  connection
         
         String outString = "{\"ip_message\":\"send to user by session id\"}";
         

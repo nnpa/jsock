@@ -13,11 +13,17 @@ import models.Session;
  * @author padaboo I.B Aleksandrov jetananas@yandex.ru
  */
 public class JSystemGarbage {
-    //restart time / run time out, run command every 20 second's
+    /**
+     * restart time / run time out, run command every 20 second's
+     */
     public static int timeout       = 20000;
-    //last time when command run (seconds
+    /**
+     * last time when command run (seconds)
+     */
     public static long lastRunTime  = 0;
-    //stop flag
+    /**
+     * stop flag
+     */
     public static boolean stopFlag  = false;
     
     
@@ -25,7 +31,9 @@ public class JSystemGarbage {
     public JSystemGarbage() {
         
     }
-    
+    /**
+     * main run method
+     */
     public static void run(){
        if(condition()){
          //delete old sessions by life time

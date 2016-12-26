@@ -30,8 +30,8 @@ public class JRouting extends Thread{
      */
     public static boolean isRunning = true;
     /**
-     * 
-     * @param taskPoolSize 
+     * Constructor
+     * @param int taskPoolSize 
      */
     public JRouting(int taskPoolSize){
         this.taskPoolSize = taskPoolSize;

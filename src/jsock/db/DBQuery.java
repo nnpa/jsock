@@ -37,9 +37,9 @@ public class DBQuery {
 
    }
    /**
-    * 
-    * @param sql
-    * @return 
+    * Execute mysql string
+    * @param String sql
+    * @return ResultSet 
     */
    public ResultSet execute(String sql){
        try {
@@ -53,7 +53,7 @@ public class DBQuery {
    }
    /**
     * Delete row by id
-    * @param id 
+    * @param int id 
     */
    public void deleteById(int id){
        try {
@@ -64,7 +64,7 @@ public class DBQuery {
    }
    /**
     * Delete row by id
-    * @return 
+    * @return int
     */
    public int delete(){
        deleteById(id);
@@ -72,15 +72,15 @@ public class DBQuery {
    }
    /**
     * Set table name
-    * @param name 
+    * @param String name 
     */
    public void setTableName(String name){
        tableName = name;
    }
    /**
     * Find element by id
-    * @param id
-    * @return 
+    * @param int id
+    * @return ResultSet
     */
    public ResultSet findById(int id){
 
@@ -92,7 +92,7 @@ public class DBQuery {
     * Find element by id - whre condition
     * Example find("id=1")
     * @param condition
-    * @return 
+    * @return ResultSet
     */
    public ResultSet find(String condition){
         
@@ -116,8 +116,8 @@ public class DBQuery {
    }
    /**
     * Update query
-    * @param set
-    * @param condition 
+    * @param String set 
+    * @param String condition 
     */
    public void update(String set,String condition){
        try {
@@ -135,8 +135,8 @@ public class DBQuery {
    
    /**
     * Escape mysql string
-    * @param s
-    * @return 
+    * @param String s
+    * @return String
     */
    public static String unescapeMySQLString(String s){
           // note: the same buffer is used for both reading and writing

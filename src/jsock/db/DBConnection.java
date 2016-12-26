@@ -56,7 +56,7 @@ public class DBConnection{
     }
 
     /**
-     * 
+     * database connection
      */
     public  DBConnection(){
         try {

@@ -30,7 +30,7 @@ public class JUDPRecivier extends Thread{
      */
     private final int poolSize;
     /**
-     * 
+     * run stop flag
      */
     public static boolean isRunning = true;
     

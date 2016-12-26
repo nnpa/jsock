@@ -17,26 +17,17 @@ import jsock.core.JUDPRecivier;
 import jsock.core.JUDPSender;
 
 /**
- *
+ * Main run file
  * @author padaboo I.B Aleksandrov jetananas@yandex.ru
  */
 public class Jsock {
-    //private User;
 
-    //private Memory;
-
-    //private Singnals;
-    
-    /**
-     * List of load modules
-     */
-    
     
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args){
-        //
+        //shutdown hook
         ShutdownHook shutdownHook = new ShutdownHook();
         Runtime.getRuntime().addShutdownHook(shutdownHook);
         
@@ -51,7 +42,7 @@ public class Jsock {
         
         //create tcp pool
         if(JConfig.protocol.equals("tcp")){
-            JTCPReciver reciver = new  JTCPReciver(JConfig.resiver_pool,JConfig.server_port);
+            JTCPReciver reciver = new  JTCPReciver(JConfig.receive_pool,JConfig.server_port);
             reciver.start();
             
             JTCPSender sender   = new  JTCPSender(JConfig.sender_pool,JConfig.client_port);
@@ -60,7 +51,7 @@ public class Jsock {
         
         //create udp poll
         if(JConfig.protocol.equals("udp")){
-            JUDPRecivier recivier = new  JUDPRecivier(JConfig.resiver_pool,JConfig.server_port);
+            JUDPRecivier recivier = new  JUDPRecivier(JConfig.receive_pool,JConfig.server_port);
             recivier.start();
             
             JUDPSender sender     = new JUDPSender(JConfig.sender_pool,JConfig.client_port);
@@ -73,7 +64,7 @@ public class Jsock {
         //
         
         //Execute system and user commands
-        JCommandExecutor gc = new JCommandExecutor(JConfig.executor_timeout,JConfig.executor_tasks);
+        JCommandExecutor gc = new JCommandExecutor(JConfig.executor_timeout,JConfig.executor_commands);
         gc.start();
         //db instance 
         DBConnection.getInstance();

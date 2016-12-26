@@ -35,7 +35,7 @@ public class JOutMessages{
     
     private static final  Map<String, JOutMessages> list = new ConcurrentHashMap<>();
     /**
-     * Create JOutMessages object from socket and socket data
+     * Create JOutMessages object from socket and JSONObject
      * @param ip 
      * @param json 
      */
@@ -44,7 +44,10 @@ public class JOutMessages{
             this.json    = json;
             this.time    = System.currentTimeMillis();
     }
-    
+    /**
+     * @param ip
+     * @param data 
+     */
     public JOutMessages(String ip,String data){
         try {
             this.ip      = ip;

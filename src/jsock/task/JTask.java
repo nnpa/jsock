@@ -12,7 +12,9 @@ import org.json.simple.JSONObject;
  * @author padaboo I.B Aleksandrov jetananas@yandex.ru
  */
 public class JTask extends Thread{
-       //error summary
+       /**
+        * Errors
+        */
         public JSONObject errors    = null;
         
         public JTask() {

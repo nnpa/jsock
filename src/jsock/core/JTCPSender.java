@@ -19,13 +19,21 @@ import jsock.message.JOutMessages;
  * @author padaboo I.B Aleksandrov jetananas@yandex.ru
  */
 public class JTCPSender extends Thread{
-    
+    /**
+     * Run stop flag
+     */
     public static boolean isRunning = true;
-    
+    /**
+     * Pool size
+     */
     public int poolSize;
-    
+    /**
+     * Out message
+     */
     public JOutMessages message;
-    
+    /**
+     * client port
+     */
     public int clientPort;
     
     public JTCPSender(int poolSize,int clientPort){
@@ -60,7 +68,9 @@ public class JTCPSender extends Thread{
     
     class TCPSenderHandler implements Runnable{
 
-        //socket
+        /**
+         * socket
+         */
         Socket socket;
         
         private TCPSenderHandler(Socket socket) {

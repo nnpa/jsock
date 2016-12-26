@@ -37,7 +37,11 @@ public class JRequestValidator {
         this.json   = json;
         this.rules  = rules;
     }
-    
+    /**
+     * require validator 
+     * you can add here all rules
+     * @return 
+     */
     public JSONObject check(){
         
         int length = rules.length - 1;
@@ -56,7 +60,10 @@ public class JRequestValidator {
         
         return object;
     }
-    
+    /**
+     * check Require method
+     * @param row 
+     */
     private void checkRequire(String[] row){
         String[] parts = row[1].split(",");
         int length     = parts.length - 1;

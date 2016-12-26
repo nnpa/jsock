@@ -21,8 +21,11 @@ import jsock.core.JHelpers;
  * @author padaboo I.B Aleksandrov jetananas@yandex.ru
  */
 public class Users extends DBQuery{
+    /**
+     * Salt string for hashing password
+     */
     public static String salt = "salt&3_84";
-    
+
     public String email;
     
     public String password;
@@ -36,7 +39,10 @@ public class Users extends DBQuery{
     public Users() {
         setTableName("users");
     }
-    
+    /**
+     * Find user by id
+     * @param int findId 
+     */
     public void byId(int findId){
         
         ResultSet result   = findById(findId);
@@ -50,10 +56,10 @@ public class Users extends DBQuery{
         }
     }
     /**
-     * 
-     * @param email
-     * @param password
-     * @return token
+     * Authorization method return true or false and load user
+     * @param String email
+     * @param String password
+     * @return boolean 
      */
     public boolean authorization(String email,String password){
         ResultSet result = find("email = '" + email + "' AND `password` = '" + hashPassword(password) + "'");
@@ -72,7 +78,10 @@ public class Users extends DBQuery{
         
         return false;
     }
-    
+    /**
+     * Load fields
+     * @param ResultSet result 
+     */
     public void loadFields(ResultSet result){
         try {
             id              = result.getInt("id");
@@ -84,7 +93,11 @@ public class Users extends DBQuery{
             Logger.getLogger(Users.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+    /**
+     * User  exists
+     * @param String email
+     * @return boolean
+     */
     public boolean exists(String email){
         
         try {
@@ -107,19 +120,30 @@ public class Users extends DBQuery{
         return false;
 
     }
-    
+    /**
+     * Generate user token
+     * @return String
+     */
     public  synchronized String getToken(){
         String tokenString = email + " " + password;
 
         String token = JHelpers.md5(tokenString) + (System.currentTimeMillis() / 1000L);
         return token;
     }
-    
+    /**
+     * Hash password
+     * @param str
+     * @return md5 hashed password
+     */
     public static synchronized String hashPassword(String str){
         return JHelpers.md5(salt + str);
     }
 
-    
+    /**
+     * Add user to database by email
+     * @param email
+     * @return string password
+     */
     public String addUser(String email){
         String password    = hashPassword(JHelpers.generateRandom(8));
         String query = " (`email`,`password`,`rights`,`create_time`)VALUES ('"+email+"','"+ password +"','user',UNIX_TIMESTAMP(now()));";
@@ -128,6 +152,5 @@ public class Users extends DBQuery{
         
         return password;
     }
-    
-    
+
 }

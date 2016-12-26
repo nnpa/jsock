@@ -22,9 +22,9 @@ public class JMailer {
     
     /**
      * Send mail
-     * @param to
-     * @param subject
-     * @param text
+     * @param String to
+     * @param String subject
+     * @param String text
      */
     public static void sendMail(String to,String subject,String text){
         

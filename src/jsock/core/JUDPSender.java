@@ -18,12 +18,21 @@ import jsock.message.JOutMessages;
  * @author padaboo I.B Aleksandrov jetananas@yandex.ru
  */
 public class JUDPSender extends Thread{
+    /**
+     * run stop flag
+     */
     public static boolean isRunning = true;
-    
+    /**
+     * pool size
+     */
     public int poolSize;
-
+    /**
+     * out passage
+     */
     public JOutMessages message;
-
+    /**
+     * client port
+     */
     public int clientPort;
 
     public JUDPSender(int poolSize,int clientPort){
@@ -66,9 +75,13 @@ public class JUDPSender extends Thread{
     
     class JUDPSenderHandler implements Runnable{
 
-        //socket
+        /**
+         * datagram socket
+         */
         DatagramSocket socket;
-        //packet
+        /**
+         * datagram packet
+         */
         DatagramPacket packet;
         
         public JUDPSenderHandler(DatagramSocket socket,DatagramPacket packet) {

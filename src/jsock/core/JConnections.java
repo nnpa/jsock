@@ -43,7 +43,6 @@ public class JConnections {
         
     public JConnections(String ip){
         
-        
         this.ip = ip;
         //this.ip         = socket.getInetAddress().toString();
         this.updateTime = System.currentTimeMillis();
@@ -52,7 +51,7 @@ public class JConnections {
     
     /**
      * Get client info object by key
-     * @return 
+     * @return JConnections
      */
     public synchronized JConnections get(){
         if(JConnections.map.containsKey(this.ip))
@@ -75,14 +74,12 @@ public class JConnections {
      * by lifetime
      */
     public static synchronized void clear(){
-        
         for(Entry<String, JConnections> e : JConnections.map.entrySet()) {
             JConnections connection = (JConnections) e.getValue();
             if((connection.updateTime + JConnections.life_time) > System.currentTimeMillis()){
                 JConnections.map.remove(e.getKey());
             }
         }
-        
     }
     
     /**

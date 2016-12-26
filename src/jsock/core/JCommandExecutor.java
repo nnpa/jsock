@@ -17,20 +17,26 @@ import java.util.logging.Logger;
  * @author nn
  */
 public class JCommandExecutor extends Thread{
-
+    /**
+     * Each commands timeout
+     */
     private int timeOut;
-    
+    /**
+     * List of commands
+     */
     public static List<String>  call = new ArrayList<String>();
-
+    /**
+     * run/stop flag
+     */
     public static boolean stopFlag = false;
     /**
      * 
-     * @param timeOut
-     * @param callClass
+     * @param int timeOut
+     * @param String[] callClass
      */
     public JCommandExecutor(int timeOut,String[] callClass){
         this.timeOut             = timeOut;
-       
+        
         JCommandExecutor.call    =  new ArrayList<>(Arrays.asList(callClass));
         
     }
