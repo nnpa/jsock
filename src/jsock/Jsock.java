@@ -22,7 +22,6 @@ import jsock.core.JUDPSender;
  */
 public class Jsock {
 
-    
     /**
      * @param args the command line arguments
      */
@@ -62,7 +61,6 @@ public class Jsock {
         taskRouter.start();
         
         //
-        
         //Execute system and user commands
         JCommandExecutor gc = new JCommandExecutor(JConfig.executor_timeout,JConfig.executor_commands);
         gc.start();

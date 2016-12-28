@@ -39,22 +39,7 @@ public class Users extends DBQuery{
     public Users() {
         setTableName("users");
     }
-    /**
-     * Find user by id
-     * @param int findId 
-     */
-    public void byId(int findId){
-        
-        ResultSet result   = findById(findId);
-        
-        try {
-            while (result.next()) {
-                loadFields(result);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Users.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+
     /**
      * Authorization method return true or false and load user
      * @param String email

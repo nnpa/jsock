@@ -49,7 +49,7 @@ public class Session extends DBQuery{
         setTableName("session");
     }
     /**
-     * Find row by token
+     * Find row by token and load model
      * @param String token 
      */
     public void findByToken(String token){
@@ -78,7 +78,7 @@ public class Session extends DBQuery{
         }
     }
     /**
-     * Set token
+     * Set token. Insert and replace session row 
      * @param int userId
      * @param String token
      * @param String ip 
@@ -116,7 +116,7 @@ public class Session extends DBQuery{
         
     }
     /**
-     * Find user by id
+     * Find user by id - load model fields
      * @param int id 
      */
     public void findByUserID(int id){
@@ -133,7 +133,6 @@ public class Session extends DBQuery{
     
     /**
      * Delete old session rows by session life time
-     * 
      */
     public void clearSession(){
         try {

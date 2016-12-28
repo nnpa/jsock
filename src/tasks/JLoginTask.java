@@ -38,11 +38,10 @@ public class JLoginTask extends JClientTask{
     
     @Override
     public void action(){
-
+        
         String email    = this.message.json.get("email").toString();
         
         String password = this.message.json.get("password").toString();
-        
         
         Users users     = new Users();
         
@@ -70,10 +69,9 @@ public class JLoginTask extends JClientTask{
              outString = "{\"error\":\"Incorrect login or password \"}";
         }
         
-        
         JOutMessages outMessage = new JOutMessages(this.message.ip,outString);
         outMessage.insert();
-
+        
     }
     
 }
