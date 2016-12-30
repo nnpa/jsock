@@ -96,7 +96,7 @@ public abstract class JClientTask extends JTask{
         session.findByToken(token);
 
         Users user = new Users();
-        user.findById(session.user_id);
+        user.byId(session.user_id);
         
         webUser = user;
     }
