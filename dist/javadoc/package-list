@@ -1,0 +1,13 @@
+commands
+conf
+jsock
+jsock.core
+jsock.db
+jsock.message
+jsock.patterns
+jsock.task
+jsock.tests
+jsock.validators
+models
+modules
+tasks
