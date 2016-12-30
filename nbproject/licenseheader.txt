@@ -1,8 +1,0 @@
-<#if licenseFirst??>
-${licenseFirst}
-</#if>
-${licensePrefix}jsock framework https://github.com/nnpa/jsock open source
-${licensePrefix}Each line should be prefixed with ${licensePrefix}
-<#if licenseLast??>
-${licenseLast}
-</#if>
