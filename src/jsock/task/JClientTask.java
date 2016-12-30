@@ -94,7 +94,9 @@ public abstract class JClientTask extends JTask{
         
         Session session = new Session();
         session.findByToken(token);
-
+        
+        System.out.println(session.id);
+        
         Users user = new Users();
         user.byId(session.user_id);
         
