@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 
 /**
  * Class with help method's
- * @author nn
+ * @author nn 
  */
 public class JHelpers {
     private static final String characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";

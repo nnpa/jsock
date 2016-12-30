@@ -36,6 +36,7 @@ public class JLoginTask extends JClientTask{
         return rigths;
     }
     
+    
     @Override
     public void action(){
         

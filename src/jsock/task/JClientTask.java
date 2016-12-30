@@ -118,7 +118,6 @@ public abstract class JClientTask extends JTask{
             }
         }
         
-        
         errors = new JSONObject();
         
         String message = "{\"error\":\"Not have permission\"}";

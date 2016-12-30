@@ -20,9 +20,7 @@ import jsock.db.DBQuery;
  */
 public class Session extends DBQuery{
 
-    public static Session getInstance(Properties props, Authenticator authenticator) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
     /**
      * User id
      */
