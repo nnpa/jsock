@@ -40,6 +40,7 @@ public class Jsock {
     }
     
     public void initCore(){
+        
         JCache cache = JCache.getInstance();
         cache.runTimer();
         
