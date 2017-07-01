@@ -5,6 +5,7 @@
 
 package jsock.task;
 
+import jsock.core.JCache;
 import jsock.core.JConnections;
 import jsock.message.JInMessages;
 import jsock.message.JOutMessages;
@@ -89,18 +90,29 @@ public abstract class JClientTask extends JTask{
      * Load user class
      */
     public void loadUser(){
+       String token    = message.json.get("auth_token").toString();
         
-        String token    = message.json.get("auth_token").toString();
+        JCache cache = JCache.getInstance();
+        Users obj = (Users) cache.get(token);
         
-        Session session = new Session();
-        session.findByToken(token);
         
-        System.out.println(session.id);
-        
-        Users user = new Users();
-        user.byId(session.user_id);
-        
-        webUser = user;
+        if(obj == null){
+            
+            Session session = new Session();
+            session.findByToken(token);
+
+            Users user = new Users();
+            user.byId(session.user_id);
+            
+            webUser = user;
+            
+            int time = 120000;
+            
+            cache.set(token,user,time);
+         
+       }else {
+            webUser = (Users) cache.get(token);
+       }
     }
     /**
      * Check rights and permissions

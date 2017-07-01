@@ -7,6 +7,7 @@ package jsock;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import conf.JConfig;
+import jsock.core.JCache;
 import jsock.core.JCommandExecutor;
 import jsock.core.JConnections;
 import jsock.db.DBConnection;
@@ -35,6 +36,10 @@ public class Jsock {
     }
     
     public void initCore(){
+        JCache cache = JCache.getInstance();
+        cache.runTimer();
+        
+        
         //asdasd
         //connection life time
         JConnections.life_time = JConfig.connection_life_time;
