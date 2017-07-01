@@ -7,6 +7,8 @@ package jsock;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import conf.JConfig;
+import java.util.HashMap;
+import java.util.Map;
 import jsock.core.JCache;
 import jsock.core.JCommandExecutor;
 import jsock.core.JConnections;
@@ -22,6 +24,8 @@ import jsock.core.JUDPSender;
  * @author padaboo I.B Aleksandrov jetananas@yandex.ru
  */
 public class Jsock {
+
+    public static Map<String, Object> modules = new HashMap<String, Object>();
 
     /**
      * @param args the command line arguments
@@ -86,6 +90,7 @@ public class Jsock {
             for(String moduleName : JConfig.modules){
                 moduleClass = Class.forName( "modules." + moduleName );
                 module      = moduleClass.newInstance();
+                modules.put(moduleName, module);
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(Jsock.class.getName()).log(Level.SEVERE, null, ex);
