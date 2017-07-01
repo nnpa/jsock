@@ -48,28 +48,11 @@ public class JTestTask extends JClientTask{
 
        System.out.println(message);
        
-       String outString = "{\"message\":\"Test\"}";
-       
+       String outString = "{\"class\":\"windows.LoginDialog\",\"method\":\"test\"}";
        
        JOutMessages outMessage = new JOutMessages(this.message.ip,outString);
        outMessage.insert();
        
-       //System.out.println(message);
-       
-      //     System.out.println(this.connection.auth_token + " " + this.message.json.get("token").toString());
-      // }
-       
-       // System.out.println(this.connection.auth_token + " " + this.message.json.get("token").toString());
-
-       // String outString = "{\"message\":\""+this.connection.auth_token+"\"}";
-        
-        //System.out.println();
-        
-        //System.out.println("token " + this.connection.auth_token);
-        
-
-        
-        //System.out.println();
     }
     
 

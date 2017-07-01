@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 import jsock.message.JOutMessages;
 
 /**
- *
+ * 
  * @author padaboo I.B Aleksandrov jetananas@yandex.ru
  */
 public class JUDPSender extends Thread{
@@ -43,9 +43,9 @@ public class JUDPSender extends Thread{
     @Override
     public void run() {
         try{
-            ExecutorService executor   = Executors.newFixedThreadPool(poolSize);
+            ExecutorService executor   =  Executors.newFixedThreadPool(poolSize);
             DatagramSocket socket      =  new DatagramSocket();
-
+            
             DatagramPacket packet;
             byte[] buffer;
             InetAddress inetAddress;
@@ -58,6 +58,8 @@ public class JUDPSender extends Thread{
                     message     =  (JOutMessages) JOutMessages.get(key);
 
                     buffer      = message.json.toJSONString().getBytes();
+                    
+                    //System.out.println(message.json.toJSONString());
                     
                     inetAddress = InetAddress.getByName(message.ip);
                     

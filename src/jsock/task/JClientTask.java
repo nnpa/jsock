@@ -101,6 +101,8 @@ public abstract class JClientTask extends JTask{
         user.byId(session.user_id);
         
         webUser = user;
+        
+        
     }
     /**
      * Check rights and permissions

@@ -77,6 +77,7 @@ public class JClientUDPTest {
                 DatagramPacket receivePacket;        
                 byte[] receiveData          = new byte[512];
                 
+                
                 while(true){
                     receivePacket = new DatagramPacket ( receiveData, receiveData.length );
                     serverSocket.receive ( receivePacket );

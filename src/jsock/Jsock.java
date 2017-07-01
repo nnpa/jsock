@@ -7,6 +7,9 @@ package jsock;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import conf.JConfig;
+import java.util.HashMap;
+import java.util.Map;
+import jsock.core.JCache;
 import jsock.core.JCommandExecutor;
 import jsock.core.JConnections;
 import jsock.db.DBConnection;
@@ -22,6 +25,8 @@ import jsock.core.JUDPSender;
  */
 public class Jsock {
 
+    public static Map<String, Object> modules = new HashMap<String, Object>();
+
     /**
      * @param args the command line arguments
      */
@@ -35,7 +40,11 @@ public class Jsock {
     }
     
     public void initCore(){
-
+        JCache cache = JCache.getInstance();
+        cache.runTimer();
+        
+        
+        
         //connection life time
         JConnections.life_time = JConfig.connection_life_time;
         
