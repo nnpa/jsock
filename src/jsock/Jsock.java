@@ -35,7 +35,7 @@ public class Jsock {
     }
     
     public void initCore(){
-
+        //asdasd
         //connection life time
         JConnections.life_time = JConfig.connection_life_time;
         
