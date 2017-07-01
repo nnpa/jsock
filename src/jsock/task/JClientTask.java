@@ -90,7 +90,7 @@ public abstract class JClientTask extends JTask{
      * Load user class
      */
     public void loadUser(){
-       String token    = message.json.get("auth_token").toString();
+        String token    = message.json.get("auth_token").toString();
         
         JCache cache = JCache.getInstance();
         Users obj = (Users) cache.get(token);
