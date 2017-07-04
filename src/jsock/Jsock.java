@@ -7,6 +7,8 @@ package jsock;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import conf.JConfig;
+import java.lang.reflect.Field;
+import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
 import jsock.core.JCache;
@@ -31,6 +33,30 @@ public class Jsock {
      * @param args the command line arguments
      */
     public static void main(String[] args){
+          
+        //Charset
+        try {
+            System.setProperty("file.encoding","UTF-8");
+            Field charset = Charset.class.getDeclaredField("defaultCharset");
+            charset.setAccessible(true);
+            charset.set(null,null);
+            
+            //shutdown hook
+            ShutdownHook shutdownHook = new ShutdownHook();
+            Runtime.getRuntime().addShutdownHook(shutdownHook);
+            
+            Jsock app = new Jsock();
+            app.initCore();
+        } catch (IllegalArgumentException ex) {
+            Logger.getLogger(Jsock.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(Jsock.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchFieldException ex) {
+            Logger.getLogger(Jsock.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SecurityException ex) {
+            Logger.getLogger(Jsock.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
         //shutdown hook
         ShutdownHook shutdownHook = new ShutdownHook();
         Runtime.getRuntime().addShutdownHook(shutdownHook);

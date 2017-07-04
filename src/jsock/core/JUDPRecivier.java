@@ -88,11 +88,9 @@ public class JUDPRecivier extends Thread{
             
             
             InetAddress inetAdress    = receivePacket.getAddress();
-            String ip = inetAdress.getHostAddress();
+            String ip   = inetAdress.getHostAddress();
                         
-            byte[] data = new byte[receivePacket.getLength()];
-            
-            data  = receivePacket.getData();
+            byte[] data = receivePacket.getData();
             
             String stringData = new String(data,0, receivePacket.getLength());
                         
