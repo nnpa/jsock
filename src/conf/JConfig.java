@@ -64,7 +64,7 @@ public class JConfig {
    /**
     * Socket buffer size
     */
-   public static final int  socket_buffer_size           = 1000;
+   public static final int  socket_buffer_size           = 2048;
    
    /**
     * Command executor section
