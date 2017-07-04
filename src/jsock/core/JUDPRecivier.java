@@ -5,6 +5,7 @@
 
 package jsock.core;
 
+import conf.JConfig;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -48,7 +49,7 @@ public class JUDPRecivier extends Thread{
             
             ExecutorService executor     = Executors.newFixedThreadPool(poolSize);
             
-            byte[] receiveData           = new byte[512];
+            byte[] receiveData           = new byte[JConfig.socket_buffer_size];
             
             while(JUDPRecivier.isRunning){
                 DatagramPacket receivePacket = new DatagramPacket ( receiveData, receiveData.length );
