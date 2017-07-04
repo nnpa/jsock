@@ -35,6 +35,9 @@ public class JUDPRecivier extends Thread{
      */
     public static boolean isRunning = true;
     
+    byte[] receiveData;
+    
+    
     public JUDPRecivier(int poolSize,int port){
         this.port     = port;
         this.poolSize = poolSize;
@@ -49,15 +52,19 @@ public class JUDPRecivier extends Thread{
             
             ExecutorService executor     = Executors.newFixedThreadPool(poolSize);
             
-            byte[] receiveData           = new byte[JConfig.socket_buffer_size];
             
             while(JUDPRecivier.isRunning){
+                
+                receiveData           = new byte[JConfig.socket_buffer_size];
+
                 DatagramPacket receivePacket = new DatagramPacket ( receiveData, receiveData.length );
                 serverSocket.receive ( receivePacket );
                 
                 executor.execute(
                     new JUDPRecivierHandler(serverSocket,receivePacket)
                 );
+                
+                receiveData = null;
             }
             serverSocket.close();
         } catch (IOException ex) {
