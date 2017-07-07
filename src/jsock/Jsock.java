@@ -44,6 +44,7 @@ public class Jsock {
     public static void main(String[] args){
         
         /*
+        * https://github.com/bitletorg/weupnp
         * https://en.wikipedia.org/wiki/Universal_Plug_and_Play
         */
         if(JConfig.upnp){
