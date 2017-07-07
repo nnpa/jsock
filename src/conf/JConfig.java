@@ -126,6 +126,8 @@ public class JConfig {
     */
    public static final String mysql_db_name       = "jsock";
 
+   public static  boolean upnp                    = false;
+
    
    public void main(){ }
 }

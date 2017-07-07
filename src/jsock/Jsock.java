@@ -7,10 +7,15 @@ package jsock;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import conf.JConfig;
+import java.io.IOException;
 import java.lang.reflect.Field;
+import java.net.InetAddress;
+import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
+import javax.xml.parsers.ParserConfigurationException;
 import jsock.core.JCache;
 import jsock.core.JCommandExecutor;
 import jsock.core.JConnections;
@@ -20,6 +25,10 @@ import jsock.core.JRouting;
 import jsock.core.JTCPSender;
 import jsock.core.JUDPRecivier;
 import jsock.core.JUDPSender;
+import org.bitlet.weupnp.GatewayDevice;
+import org.bitlet.weupnp.GatewayDiscover;
+import org.bitlet.weupnp.PortMappingEntry;
+import org.xml.sax.SAXException;
 
 /**
  * Main run file
@@ -33,7 +42,15 @@ public class Jsock {
      * @param args the command line arguments
      */
     public static void main(String[] args){
-          
+        
+        /*
+        * https://en.wikipedia.org/wiki/Universal_Plug_and_Play
+        */
+        if(JConfig.upnp){
+            Jsock.upnpPort(JConfig.client_port);
+        }
+        
+        
         //Charset
         try {
             System.setProperty("file.encoding","UTF-8");
@@ -64,6 +81,8 @@ public class Jsock {
         Jsock app = new Jsock();
         app.initCore();
     }
+    
+    
     
     public void initCore(){
         JCache cache = JCache.getInstance();
@@ -119,6 +138,50 @@ public class Jsock {
                 modules.put(moduleName, module);
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(Jsock.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+     public static void upnpPort(int port){
+        try {
+            GatewayDiscover discover = new GatewayDiscover();
+            discover.discover();
+            
+            GatewayDevice d = discover.getValidGateway();
+            
+            if (null != d) {
+                System.out.println(d.getLocation());
+                
+                //       new Object[]{d.getModelName(), d.getModelDescription()});
+            } else {
+                System.err.println("not discover");
+            }
+            
+            InetAddress localAddress = d.getLocalAddress();
+            
+            String externalIPAddress = d.getExternalIPAddress();
+            
+            PortMappingEntry portMapping = new PortMappingEntry();
+            
+            if (d.getSpecificPortMappingEntry(port,"UDP",portMapping)) {
+                System.out.println("upnpPort mapped");
+            }
+            
+            /**
+                if (d.addPortMapping(8086, 8086,localAddress.getHostAddress(),"UDP","test")) {
+                    System.out.println("port add 8086");
+                }   
+            **/
+            
+            if (d.addPortMapping(port, port,localAddress.getHostAddress(),"UDP","test")) {
+                System.out.println("port add " + port);
+            }
+            
+        } catch (IOException ex) {
+            Logger.getLogger(Jsock.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SAXException ex) {
+            Logger.getLogger(Jsock.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParserConfigurationException ex) {
             Logger.getLogger(Jsock.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

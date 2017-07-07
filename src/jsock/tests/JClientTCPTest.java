@@ -99,7 +99,10 @@ public class JClientTCPTest {
                     while(scanner.hasNextLine()){
                         data += scanner.nextLine();
                     }
-                    System.out.println(data);
+                    
+                    
+                    
+                    //System.out.println(data);
                     /*
                     parser = new JSONParser();
 

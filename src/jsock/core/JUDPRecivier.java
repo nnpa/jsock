@@ -52,7 +52,6 @@ public class JUDPRecivier extends Thread{
             
             ExecutorService executor     = Executors.newFixedThreadPool(poolSize);
             
-            
             while(JUDPRecivier.isRunning){
                 
                 receiveData           = new byte[JConfig.socket_buffer_size];
