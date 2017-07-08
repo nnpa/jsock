@@ -112,3 +112,6 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2016-12-12 20:41:32
+
+ALTER TABLE `jsock`.`session` 
+ADD COLUMN `port` VARCHAR(14) NULL AFTER `ip`;

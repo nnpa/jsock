@@ -36,7 +36,7 @@ public class JTCPSender extends Thread{
      */
     public int clientPort;
     
-    public JTCPSender(int poolSize,int clientPort){
+    public JTCPSender(int poolSize){
         this.poolSize    = poolSize;
         this.clientPort  = clientPort;
     }
@@ -52,7 +52,10 @@ public class JTCPSender extends Thread{
                 try {
                     message     =  (JOutMessages) JOutMessages.get(key);
                     
+                    
+                    clientPort    = Integer.getInteger(message.port);
 
+                    
                     Socket socket = new Socket(message.ip, clientPort);
                     
                     TCPSenderHandler senderHandler = new TCPSenderHandler(socket);

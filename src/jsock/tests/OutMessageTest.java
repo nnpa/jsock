@@ -15,9 +15,11 @@ import org.json.simple.JSONObject;
 public class OutMessageTest {
     public static void main(String[] args){
         String     ip    = "asdasd";
+        String     port  = "22";
+
         JSONObject json  = new JSONObject();
         
-        JOutMessages out = new JOutMessages(ip,json);
+        JOutMessages out = new JOutMessages(ip,port,json);
         out.insert();
         
         String key = out.ip +"_" + out.time;

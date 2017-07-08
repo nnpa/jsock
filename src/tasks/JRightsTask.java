@@ -49,13 +49,15 @@ public class JRightsTask extends JClientTask{
         Session session = new Session();
         session.findByUserID(12);
         
-        String ip = session.ip;
+        String ip   = session.ip;
+        String port = session.port;
+
         //all users
         //session  connection
         
         String outString = "{\"ip_message\":\"send to user by session id\"}";
         
-        JOutMessages outMessage = new JOutMessages(ip,outString);
+        JOutMessages outMessage = new JOutMessages(ip,port,outString);
         outMessage.insert();
         
     }

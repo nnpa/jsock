@@ -33,22 +33,25 @@ public class JOutMessages{
      */
     public long   time;
     
+    public String port;
+    
     private static final  Map<String, JOutMessages> list = new ConcurrentHashMap<>();
     /**
      * Create JOutMessages object from socket and JSONObject
      * @param ip 
      * @param json 
      */
-    public JOutMessages(String ip,JSONObject json){
+    public JOutMessages(String ip,String port,JSONObject json){
             this.ip      = ip;
             this.json    = json;
             this.time    = System.currentTimeMillis();
+            this.port    = port;
     }
     /**
      * @param ip
      * @param data 
      */
-    public JOutMessages(String ip,String data){
+    public JOutMessages(String ip,String port,String data){
         try {
             this.ip      = ip;
             this.time    = System.currentTimeMillis();
@@ -58,7 +61,7 @@ public class JOutMessages{
             
             Object obj = parser.parse(data);
             json       = (JSONObject) obj;
-            
+            this.port  = port;
         } catch (ParseException ex) {
             Logger.getLogger(JOutMessages.class.getName()).log(Level.SEVERE, null, ex);
             

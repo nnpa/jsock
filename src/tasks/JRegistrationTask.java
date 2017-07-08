@@ -54,7 +54,7 @@ public class JRegistrationTask extends JClientTask{
         }else{
             outString = "{\"error\":\"User exists or email not valid\"}";
         }
-        JOutMessages outMessage = new JOutMessages(this.message.ip,outString);
+        JOutMessages outMessage = new JOutMessages(this.message.ip,this.message.port,outString);
         outMessage.insert();
         //System.out.println(email);
         

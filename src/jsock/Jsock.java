@@ -99,7 +99,7 @@ public class Jsock {
             JTCPReciver reciver = new  JTCPReciver(JConfig.receive_pool,JConfig.server_port);
             reciver.start();
             
-            JTCPSender sender   = new  JTCPSender(JConfig.sender_pool,JConfig.client_port);
+            JTCPSender sender   = new  JTCPSender(JConfig.sender_pool);
             sender.start();
         }
         
@@ -108,7 +108,7 @@ public class Jsock {
             JUDPRecivier recivier = new  JUDPRecivier(JConfig.receive_pool,JConfig.server_port);
             recivier.start();
             
-            JUDPSender sender     = new JUDPSender(JConfig.sender_pool,JConfig.client_port);
+            JUDPSender sender     = new JUDPSender(JConfig.sender_pool);
             sender.start();
         }
         //Routing user tasks

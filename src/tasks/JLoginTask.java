@@ -55,13 +55,11 @@ public class JLoginTask extends JClientTask{
              String token       = users.getToken();
              int   userId       = users.id;
              
-             String ip          = this.message.ip;
-             
              //System.out.println(insertQuery);
              
              Session session = new Session();
              
-             session.setToken(userId, token,ip);
+             session.setToken(userId, token,message.ip,message.port);
              
              
              outString = "{\"token\":\"" + token +"\"}";
@@ -70,7 +68,7 @@ public class JLoginTask extends JClientTask{
              outString = "{\"error\":\"Incorrect login or password \"}";
         }
         
-        JOutMessages outMessage = new JOutMessages(this.message.ip,outString);
+        JOutMessages outMessage = new JOutMessages(this.message.ip,this.message.port,outString);
         outMessage.insert();
         
     }

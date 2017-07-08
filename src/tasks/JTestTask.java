@@ -51,7 +51,7 @@ public class JTestTask extends JClientTask{
        String outString = "{\"message\":\"Test\"}";
        
        
-       JOutMessages outMessage = new JOutMessages(this.message.ip,outString);
+       JOutMessages outMessage = new JOutMessages(this.message.ip,this.message.port,outString);
        outMessage.insert();
        
        //System.out.println(message);

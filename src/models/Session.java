@@ -38,7 +38,10 @@ public class Session extends DBQuery{
      * User ip
      */
     public String  ip;
-    
+    /**
+     * 
+     */
+    public String port;
     
     //300 second by default for framework test
     public static int sessionLifeTime = 300;
@@ -71,6 +74,7 @@ public class Session extends DBQuery{
             token           = result.getNString("token");
             time            = result.getInt("time");
             ip              = result.getNString("ip");
+            port            = result.getNString("port");
         } catch (SQLException ex) {
             Logger.getLogger(Users.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -81,7 +85,7 @@ public class Session extends DBQuery{
      * @param String token
      * @param String ip 
      */
-    public void setToken(int userId,String token,String ip){
+    public void setToken(int userId,String token,String ip,String port){
         try {
             int time           = Long.valueOf(System.currentTimeMillis() / 1000L).intValue();
 
@@ -97,13 +101,14 @@ public class Session extends DBQuery{
                 
              }
 
+             
             if(count > 0){
-                String update = " set `user_id` = \"" + userId + "\", `token` = \"" + token + "\", `time` = UNIX_TIMESTAMP(now()), `ip` = \"" + ip +"\"";
+                String update = " set `user_id` = \"" + userId + "\", `token` = \"" + token + "\", `time` = UNIX_TIMESTAMP(now()), `ip` = \"" + ip +"\", `port` = \"" + port +"\"";
 
                 update(update," where user_id = " + userId);
                 //UNIX_TIMESTAMP(now())
             } else {
-                String insertQuery = " (`user_id`,`token`,`time`,`ip`)VALUES (" + userId +",\""+ token +"\",UNIX_TIMESTAMP(now()),\""+ ip +"\");";
+                String insertQuery = " (`user_id`,`token`,`time`,`ip`)VALUES (" + userId +",\""+ token +"\",UNIX_TIMESTAMP(now()),\""+ ip +"\",\""+ port +"\");";
                 
                 insert(insertQuery);
             }

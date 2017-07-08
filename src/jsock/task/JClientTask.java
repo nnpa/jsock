@@ -70,7 +70,7 @@ public abstract class JClientTask extends JTask{
         errors               = rv.check();
         
         if(errors != null){
-            JOutMessages outMessage = new JOutMessages(this.message.ip,errors);
+            JOutMessages outMessage = new JOutMessages(this.message.ip,this.message.ip,errors);
             outMessage.insert();
         }
     }
@@ -136,7 +136,7 @@ public abstract class JClientTask extends JTask{
         
         String message = "{\"error\":\"Not have permission\"}";
 
-        JOutMessages outMessage = new JOutMessages(this.message.ip,message);
+        JOutMessages outMessage = new JOutMessages(this.message.ip,this.message.port,message);
         outMessage.insert();
         
         return false;

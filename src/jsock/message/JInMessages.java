@@ -33,6 +33,8 @@ public class JInMessages{
      */
     public long   time;
     
+    public String port;
+    
     private static final  Map<String, JInMessages> list = new ConcurrentHashMap<>();
     /**
      * Create JInMessages object from socket and socket data
@@ -43,6 +45,7 @@ public class JInMessages{
             this.ip      = ip;
             this.json    = json;
             this.time    = System.currentTimeMillis();
+            this.port    = Long.toString((long) json.get("client_port"));
     }
     
     public JInMessages(String ip,String data){
@@ -57,6 +60,8 @@ public class JInMessages{
 
             json       = (JSONObject) obj;
             
+            port       =  Long.toString((long) json.get("client_port"));
+
         } catch (ParseException ex) {
             
             Logger.getLogger(JInMessages.class.getName()).log(Level.SEVERE, null, ex);

@@ -35,9 +35,8 @@ public class JUDPSender extends Thread{
      */
     public int clientPort;
 
-    public JUDPSender(int poolSize,int clientPort){
+    public JUDPSender(int poolSize){
         this.poolSize    = poolSize;
-        this.clientPort  = clientPort;
     }
     
     @Override
@@ -61,7 +60,10 @@ public class JUDPSender extends Thread{
                     
                     inetAddress = InetAddress.getByName(message.ip);
                     
-                    packet = new DatagramPacket(buffer, buffer.length, inetAddress, this.clientPort);
+                    clientPort    = Integer.getInteger(message.port);
+
+                    
+                    packet = new DatagramPacket(buffer, buffer.length, inetAddress, clientPort);
                     
                     handler = new JUDPSenderHandler(socket,packet);
                     executor.execute(handler);
