@@ -65,6 +65,7 @@ public class Jsock {
             
             Jsock app = new Jsock();
             app.initCore();
+            
         } catch (IllegalArgumentException ex) {
             Logger.getLogger(Jsock.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {

@@ -108,7 +108,7 @@ public class Session extends DBQuery{
                 update(update," where user_id = " + userId);
                 //UNIX_TIMESTAMP(now())
             } else {
-                String insertQuery = " (`user_id`,`token`,`time`,`ip`)VALUES (" + userId +",\""+ token +"\",UNIX_TIMESTAMP(now()),\""+ ip +"\",\""+ port +"\");";
+                String insertQuery = " (`user_id`,`token`,`time`,`ip`,`port`)VALUES (" + userId +",\""+ token +"\",UNIX_TIMESTAMP(now()),\""+ ip +"\",\""+ port +"\");";
                 
                 insert(insertQuery);
             }
