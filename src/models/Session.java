@@ -92,6 +92,8 @@ public class Session extends DBQuery{
             
             String countQuery = "SELECT COUNT(*) AS count FROM `"+db.dbName+"`.`"+ tableName +"` where user_id = '" + userId + "'";
             
+            System.out.println(countQuery);
+
             
             ResultSet result = db.statement.executeQuery(countQuery);
             int count = 0;

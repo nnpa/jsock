@@ -15,6 +15,7 @@ import java.net.UnknownHostException;
 import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 import javax.xml.parsers.ParserConfigurationException;
 import jsock.core.JCache;
 import jsock.core.JCommandExecutor;
@@ -49,6 +50,7 @@ public class Jsock {
         */
         
         if(JConfig.upnp){
+            // JConfig.client_port = getRandomPort();
             Jsock.upnpPort(JConfig.client_port);
         }
         
@@ -186,6 +188,70 @@ public class Jsock {
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Jsock.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+     
+    public static int getRandomPort(){
+        int[] ports = {
+                49152,
+                49153,
+                49154,
+                49155,
+                49156,
+                49157,
+                49158,
+                49159,
+                49160,
+                49161,
+                49162,
+                49163,
+                49164,
+                49165,
+                49166,
+                49167,
+                49168,
+                49169,
+                49170,
+                49171,
+                49172,
+                49173,
+                49174,
+                49175,
+                49176,
+                49178,
+                49179,
+                49180,
+                49181,
+                49182,
+                49183,
+                49184,
+                49185,
+                49186,
+                49187,
+                49188,
+                49189,
+                49190,
+                49191,
+                49192,
+                49193,
+                49194,
+                49195,
+                49196,
+                49197,
+                49198,
+                49199,
+                49200,
+                49201,
+                49202,
+                49203,
+                49204,
+                49205,
+                49206
+        };
+        
+        Random generator = new Random();
+        int i = generator.nextInt(ports.length) - 1;
+        
+        return ports[i];
     }
     
 }
