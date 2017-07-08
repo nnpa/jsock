@@ -47,10 +47,10 @@ public class Jsock {
         * https://github.com/bitletorg/weupnp
         * https://en.wikipedia.org/wiki/Universal_Plug_and_Play
         */
+        
         if(JConfig.upnp){
             Jsock.upnpPort(JConfig.client_port);
         }
-        
         
         //Charset
         try {
