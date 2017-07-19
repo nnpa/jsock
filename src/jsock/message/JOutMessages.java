@@ -80,6 +80,9 @@ public class JOutMessages{
 
         JOutMessages.list.put(key, this);
 
+        System.out.println("port: " + port);
+        System.out.println("method: " + this.json.get("method"));
+
     }
     
      /**

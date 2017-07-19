@@ -36,6 +36,8 @@ public class JTCPSender extends Thread{
      */
     public int clientPort;
     
+    public Socket socket;
+    
     public JTCPSender(int poolSize){
         this.poolSize    = poolSize;
         this.clientPort  = clientPort;
@@ -56,7 +58,7 @@ public class JTCPSender extends Thread{
                     clientPort    = Integer.getInteger(message.port);
 
                     
-                    Socket socket = new Socket(message.ip, clientPort);
+                    socket = new Socket(message.ip, clientPort);
                     
                     TCPSenderHandler senderHandler = new TCPSenderHandler(socket);
                     
@@ -66,6 +68,11 @@ public class JTCPSender extends Thread{
                     Logger.getLogger(JTCPSender.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+        }
+         try {
+            socket.close();
+        } catch (IOException ex) {
+            Logger.getLogger(JTCPSender.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -85,9 +92,10 @@ public class JTCPSender extends Thread{
             try {
                 PrintWriter socketOut = new PrintWriter(socket.getOutputStream(), true);
                 
-                System.out.println(message.json.toJSONString());
-                socketOut.println(message.json.toJSONString());
+               // System.out.println(message.json.toJSONString());
+              //  socketOut.println(message.json.toJSONString());
                 message = null;
+                socket.close();
                 
             } catch (IOException ex) {
                 Logger.getLogger(JTCPSender.class.getName()).log(Level.SEVERE, null, ex);

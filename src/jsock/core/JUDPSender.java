@@ -35,6 +35,8 @@ public class JUDPSender extends Thread{
      */
     public int clientPort;
 
+    DatagramPacket packet;
+
     public JUDPSender(int poolSize){
         this.poolSize    = poolSize;
     }
@@ -45,7 +47,6 @@ public class JUDPSender extends Thread{
             ExecutorService executor   = Executors.newFixedThreadPool(poolSize);
             DatagramSocket socket      =  new DatagramSocket();
 
-            DatagramPacket packet;
             byte[] buffer;
             InetAddress inetAddress;
             JUDPSenderHandler handler;
@@ -70,6 +71,8 @@ public class JUDPSender extends Thread{
 
                 } 
             }
+            packet = null;
+            socket.close();
         } catch (UnknownHostException | SocketException ex) {
             Logger.getLogger(JUDPSender.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -96,6 +99,9 @@ public class JUDPSender extends Thread{
             try {
                 
                 socket.send(packet);
+                
+                socket.close();
+                packet = null;
             } catch (IOException ex) {
                 Logger.getLogger(JUDPSender.class.getName()).log(Level.SEVERE, null, ex);
             }

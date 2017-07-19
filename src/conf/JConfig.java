@@ -128,6 +128,10 @@ public class JConfig {
 
    public static  boolean upnp                    = false;
 
+   public static boolean encrypt    = true;
+   
+   public static String encrypt_key = "Es345asd$:a@!";
+
    
    public void main(){ }
 }

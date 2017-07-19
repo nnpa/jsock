@@ -45,8 +45,6 @@ public class JTestTask extends JClientTask{
        //String token = this.message.json.get("auth_token").toString();
        
        String message   = this.message.json.get("message").toString();
-
-       System.out.println(message);
        
        String outString = "{\"message\":\"Test\"}";
        

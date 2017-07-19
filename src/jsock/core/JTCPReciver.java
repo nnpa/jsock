@@ -127,6 +127,8 @@ public class JTCPReciver extends Thread{
                 JInMessages inputSocketMessage = new JInMessages(ip,data);
                 inputSocketMessage.insert();
                 
+                socket.close();
+
             } catch (IOException ex) {
                 Logger.getLogger(TCPReciverHandler.class.getName()).log(Level.SEVERE, null, ex);
             } finally{

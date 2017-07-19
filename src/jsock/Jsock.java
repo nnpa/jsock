@@ -263,6 +263,14 @@ public class Jsock {
 class ShutdownHook extends Thread {
     @Override
     public void run() {
-        System.out.println("System halt");
+       
+        JTCPSender.isRunning   = false;
+        JUDPSender.isRunning   = false;
+        
+        JTCPReciver.isRunning  = false;
+        JUDPRecivier.isRunning = false;
+        
+        JRouting.isRunning     = false;
+        
     }
 }
