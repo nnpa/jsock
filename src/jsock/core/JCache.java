@@ -21,7 +21,7 @@ public class JCache<K, V> {
 
     public  Map<K, V> cache = new ConcurrentHashMap<K, V>();  
 
-    public static HashMap<String,Integer> expiries = new HashMap<String,Integer>();
+    public static Map<String,Integer> expiries = new ConcurrentHashMap<String,Integer>();
 
     public static int checkTime = 30000;
     
