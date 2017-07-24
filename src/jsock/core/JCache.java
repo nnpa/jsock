@@ -7,6 +7,7 @@ package jsock.core;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TimerTask;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * public static class GenericCache<K, V>
@@ -18,7 +19,7 @@ public class JCache<K, V> {
       
     public static JCache instance;
 
-    public  Map<K, V> cache = new HashMap<K, V>();  
+    public  Map<K, V> cache = new ConcurrentHashMap<K, V>();  
 
     public static HashMap<String,Integer> expiries = new HashMap<String,Integer>();
 
@@ -30,7 +31,7 @@ public class JCache<K, V> {
         
     }
     
-    public  void set(K key, V value,int time){  
+    public synchronized void set(K key, V value,int time){  
         
         instance.cache.put(key, value);  
         
@@ -43,7 +44,7 @@ public class JCache<K, V> {
     }  
   
      //Generic method  
-     public  V get(K key){  
+     public synchronized V get(K key){  
          return cache.get(key);  
      }
      
@@ -82,7 +83,7 @@ public class JCache<K, V> {
      * remove cache
      * @param key 
      */
-    public  void remove(K key){
+    public synchronized void remove(K key){
         instance.cache.remove(key);
         instance.expiries.remove(key);
     }
