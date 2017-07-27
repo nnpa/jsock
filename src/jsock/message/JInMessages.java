@@ -35,6 +35,9 @@ public class JInMessages{
     
     public String port;
     
+    public static long number = 0;
+
+    
     private static final  Map<String, JInMessages> list = new ConcurrentHashMap<>();
     /**
      * Create JInMessages object from socket and socket data
@@ -110,6 +113,8 @@ public class JInMessages{
      * @return 
      */
     public String genKey(){
-        return this.ip + "_" + this.time;
+        number ++;
+        return this.ip + "_" + this.time + "_" + number;
+
     }
 }

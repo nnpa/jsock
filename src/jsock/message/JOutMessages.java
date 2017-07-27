@@ -35,6 +35,9 @@ public class JOutMessages{
     
     public String port;
     
+    public static long number = 0;
+
+    
     private static final  Map<String, JOutMessages> list = new ConcurrentHashMap<>();
     /**
      * Create JOutMessages object from socket and JSONObject
@@ -112,6 +115,8 @@ public class JOutMessages{
      * @return 
      */
     public String genKey(){
-        return this.ip + "_" + this.time;
+        number ++;
+
+        return this.ip + "_" + this.time + "_" + number;
     }
 }
