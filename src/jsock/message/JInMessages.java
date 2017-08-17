@@ -117,4 +117,12 @@ public class JInMessages{
         return this.ip + "_" + this.time + "_" + number;
 
     }
+    /**
+     * get variable from JSONObject by key
+     * @param key 
+     * @return Object cast (JSONObject)
+     */
+    public Object getJson(String key){
+        return json.get(key);
+    }
 }

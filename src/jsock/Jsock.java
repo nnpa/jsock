@@ -272,5 +272,8 @@ class ShutdownHook extends Thread {
         
         JRouting.isRunning     = false;
         
+        DBConnection db = DBConnection.getInstance();
+        db.close();
+        
     }
 }
