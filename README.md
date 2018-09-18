@@ -12,7 +12,7 @@ More information:
 7. Data storage
 8. Errors.
 
-https://jsocket-java.blogspot.ru/2017/02/jsocket-framework-documentation.html
+http://jsockframework.blogspot.com/2016/10/jsock-framework-doc-1.html
 
 Basic working principle
 
